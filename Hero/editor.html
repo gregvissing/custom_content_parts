@@ -3,8 +3,8 @@
 
 		function setupSettings() {
 			if (typeof BLACKBAUD.api.customPartEditor.settings.text == 'undefined' ||
-				typeof BLACKBAUD.api.customPartEditor.settings.height == 'undefined' ||
-				typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined' || ) {
+				typeof BLACKBAUD.api.customPartEditor.settings.text == 'undefined' ||
+				typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined') {
 				BLACKBAUD.api.customPartEditor.settings = {
 					text: '',
 					height: '',
@@ -87,6 +87,7 @@
 	<ul>
 		<li class="error error-permission">You do not have permission to launch the image picker.</li>
 		<li class="error error-validation error-text">Text is required.</li>
+		<li class="error error-validation error-height">Height is required.</li>
 		<li class="error error-validation error-image">Image is required.</li>
 	</ul>
 </div>
@@ -110,15 +111,13 @@
 
 			<div class="Field">
 				<div class="FieldHeading">
-					<label for="field-highlighter-text" class="FieldLabel">Page Height:</label>
+					<label for="field-highlighter-height" class="FieldLabel">Height (%):</label>
 					<span class="FieldRequired">*</span>
 					<span class="clear"></span>
 				</div>
 				<div class="FieldContentText">
 					<input type="text" id="field-highlighter-height" class="FieldSelect FieldInput"
-						data-validate=".error-text" />
-					<input type="hidden" id="field-highlighter-image-name" data-validate=".error-image" />
-					<input type="hidden" id="field-highlighter-image-url" data-validate=".error-image" />
+						data-validate=".error-height" />
 				</div>
 			</div>
 
