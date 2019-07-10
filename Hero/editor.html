@@ -6,6 +6,7 @@
 				typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined') {
 				BLACKBAUD.api.customPartEditor.settings = {
 					text: '',
+					height: '',
 					image: {
 						url: ''
 					}
@@ -41,6 +42,7 @@
 
 				// Save text
 				BLACKBAUD.api.customPartEditor.settings.text = $('#field-highlighter-text').val();
+				BLACKBAUD.api.customPartEditor.settings.text = $('#field-highlighter-height').val();
 
 				return success;
 			}
@@ -48,6 +50,7 @@
 
 		function renderText() {
 			$('#field-highlighter-text').val(BLACKBAUD.api.customPartEditor.settings.text);
+			$('#field-highlighter-height').val(BLACKBAUD.api.customPartEditor.settings.height);
 		}
 
 		function renderImage(o) {
@@ -103,6 +106,21 @@
 					<input type="hidden" id="field-highlighter-image-url" data-validate=".error-image" />
 				</div>
 			</div>
+
+			<div class="Field">
+				<div class="FieldHeading">
+					<label for="field-highlighter-text" class="FieldLabel">Page Height:</label>
+					<span class="FieldRequired">*</span>
+					<span class="clear"></span>
+				</div>
+				<div class="FieldContentText">
+					<input type="text" id="field-highlighter-height" class="FieldSelect FieldInput"
+						data-validate=".error-text" />
+					<input type="hidden" id="field-highlighter-image-name" data-validate=".error-image" />
+					<input type="hidden" id="field-highlighter-image-url" data-validate=".error-image" />
+				</div>
+			</div>
+
 			<div class="Field">
 				<div class="FieldHeading">
 					<label for="field-highlighter-image" class="FieldLabel">Image:</label>
