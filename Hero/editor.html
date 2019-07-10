@@ -3,7 +3,8 @@
 
 		function setupSettings() {
 			if (typeof BLACKBAUD.api.customPartEditor.settings.text == 'undefined' ||
-				typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined') {
+				typeof BLACKBAUD.api.customPartEditor.settings.height == 'undefined' ||
+				typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined' || ) {
 				BLACKBAUD.api.customPartEditor.settings = {
 					text: '',
 					height: '',
@@ -42,7 +43,7 @@
 
 				// Save text
 				BLACKBAUD.api.customPartEditor.settings.text = $('#field-highlighter-text').val();
-				BLACKBAUD.api.customPartEditor.settings.text = $('#field-highlighter-height').val();
+				BLACKBAUD.api.customPartEditor.settings.height = $('#field-highlighter-height').val();
 
 				return success;
 			}
