@@ -1,9 +1,9 @@
 <script>
 	function imageHighlighterRender(o) {
 		var html = [
-			'<p class="circle" style="background-image: url(' + o.settings.image.url + ')">',
-			'<span class="text">' + o.settings.text + '</span>',
-			'</p>'
+			'<div class="hero circle" style="background-image: url(' + o.settings.image.url + '); height: ' + o.settings.height + 'vh; background-repeat: no-repeat; width: 100%;background-size: cover;">',
+			'<h1 class="heading text" style="text-align: center; color: #' + o.settings.textColor + '">' + o.settings.text + '</h1>',
+			'</div>'
 		];
 		$('#' + o.elementId).html(html.join(''));
 	}
