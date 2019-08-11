@@ -1,0 +1,160 @@
+<style>
+@charset "UTF-8";
+
+button {
+  outline: none;
+}
+
+body {
+  padding: 20px;
+  line-height: 30px;
+  font-size: 16px;
+  background-color: #f6f6f6;
+}
+
+#app {
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #F5B689;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.list-input {
+  display: inline-block;
+  width: 80%;
+  height: 25px;
+  font-size: 1rem;
+  text-indent: 0.5rem;
+}
+
+.list {
+  display: inline-block;
+  width: 80%;
+  line-height: 25px;
+  border: none;
+  font-size: 1rem;
+  text-indent: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 100%;
+  margin-left: 10px;
+  border: none;
+  box-shadow: 0 0 4px 1px #777;
+}
+
+.add-btn, .delete-btn {
+  background-color: #fff;
+}
+.add-btn:hover, .delete-btn:hover {
+  color: #fff;
+  transition-duration: 0.6s;
+}
+
+.add-btn:hover {
+  background-color: #69D4FF;
+}
+
+.delete-btn:hover {
+  background-color: #FF2B36;
+}
+
+</style>
+<div id="app">
+  	<h2>Card web component</h2>
+  	<div class="row">
+    	<input class="list-input" type="text" v-model="item" />
+      	<input class="list-inputContent" type="text" v-model="itemContent" />
+    	<button class="btn add-btn" v-on:click.prevent="addList">+</button>
+  	</div>
+  	<div class="row rowVal" v-for="(list, id) in lists">
+    	<input class="list" type="text" v-bind:value="list.title" v-bind:data-id="id"/>
+      	<input class="listContent" type="text" v-bind:value="list.content" v-bind:data-id="id"/>
+    	<button class="btn delete-btn" v-on:click="deleteList(id)">-</button>
+  	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
+<script>
+!function($) {
+  
+  $(function() {
+var myVals = BLACKBAUD.api.customPartEditor.settings["cardItems"];
+console.log(myVals);
+
+var app = new Vue({
+  	el: "#app",
+  	data: {
+    	item: "",
+      	itemContent: "",
+      	lists: myVals
+     // lists: ["banana", "apple", "pen", "apple", "banana"]
+  	},
+  	watch: {
+      	lists: function() {
+    		return this.lists;
+  		},
+  		item: function() {
+    		return this.item;
+  		},
+      	itemContent: function() {
+    		return this.itemContent;
+  		}
+  	},
+  	methods: {
+    	addList: function() {
+      		var filterdItem = this.item.trim();
+          	var filterdItemContent = this.itemContent.trim();
+          	var itemArr = { title: filterdItem, content: filterdItemContent };
+                           
+          	console.log(itemArr);
+      		if (itemArr) {
+              	
+        		this.lists.push(itemArr);
+        		this.item = "";
+              	this.itemContent = "";
+      		}
+    	},
+    	deleteList: function(id) {
+      		// var index = this.lists.indexOf(list);
+      		this.lists.splice(id, 1);
+    	}
+  	}
+});
+  
+BLACKBAUD.api.customPartEditor.onSave = function(){ 
+	
+	var items = [];
+	
+	$('.rowVal').each(function(i){
+		
+		var rowdata = {
+			title: $(this).find('.list').val(),
+          	content: $(this).find('.listContent').val()
+		};
+		
+		items.push(rowdata);
+		
+	});
+  	
+  	console.log(items);
+  //alert('cool!');
+	BLACKBAUD.api.customPartEditor.settings["cardItems"] = items;
+  
+	return true;
+
+};
+  
+  });
+  
+}(jQuery); 
+</script>
