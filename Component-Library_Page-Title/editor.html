@@ -1,0 +1,32 @@
+<p>
+  <label for="pageTitle">Page Title:</label>
+  <input type="text" id="pageTitle" />
+</p>
+      
+<script>
+!function($) {
+  
+  $(function() {
+    
+    // Read our previously saved greeting (if it exists)
+    if (typeof BLACKBAUD.api.customPartEditor.settings.pageTitle != '') {
+      $('#pageTitle').val(BLACKBAUD.api.customPartEditor.settings.pageTitle);
+    }
+    
+    // We must implement the onSave method
+    // Returning true or false controls whether the save is successful
+    BLACKBAUD.api.customPartEditor.onSave = function() {
+      
+      // Save our greeting
+      BLACKBAUD.api.customPartEditor.settings = {
+        pageTitle: $('#pageTitle').val()
+      };
+      
+      // Required to allow the settings to save and the part to close
+      return true;
+    };
+    
+  });
+  
+}(jQuery);     
+</script>
