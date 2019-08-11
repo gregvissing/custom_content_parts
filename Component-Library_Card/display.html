@@ -1,0 +1,118 @@
+ <style>
+#app.row {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 1em !important;
+    margin-bottom: 2em !important;    
+}
+  
+#app.row .one-third {
+    width: 33% !important;
+    padding: 0 !important;
+    margin: 0;
+}
+  
+#app.row .one-third:nth-of-type(2) {
+    margin: 0 0.5%;
+}
+  
+#app.row .one-third .vision-image {
+    height: 250px !important;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+  
+#app.row .one-third .vision-content {
+    height: 125px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: #000;
+}
+  
+#app.row .one-third .vision-content .vision-content-container {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    padding: 20px 20px 70px;
+    background: #fff;
+    margin: 0 auto;
+    background: #fff;
+    height: 115px;
+}
+  
+#app.row .one-third .vision-content .vision-content-container h4 {
+    margin-bottom: 0;
+    font-family: "Verlag Book" !important;
+}
+</style>
+
+<div id="app" class="row">
+    <!--<div class="card one-third column" style="width: 18rem;" v-for="(item, index) in lists" :key="index">-->
+    	<div class="one-third column" v-for="(item, index) in lists" :key="index">
+          	<div class="vision-image" style="background-image: url('https://via.placeholder.com/150');">&nbsp;</div>
+          	<img alt="The Drive to Accelerate Discovery" class="vision-image hide" src="https://via.placeholder.com/150'">
+          	<div class="vision-content">
+            	<div class="vision-content-container">
+                  	<h4>{{ item.title }}</h4>
+                  <p>{{ item.content }}</p>
+              		<a class="btn btn-primary fancybox-vision" href="javascript:;" data-fancybox="" data-src="#accelerate-read-more" data-modal="true">Read More</a>
+            	</div>	
+          	</div>
+      	</div>    
+	<!--</div>-->
+</div>
+
+
+
+<script src="https://ucfoun-stg-bbis.concoursehost.com/file/webdev/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
+<script>
+function initCardComponent(instance) {
+  	var accordionVals = instance.settings["cardItems"];
+  	console.log(accordionVals);
+  
+  	var app = new Vue({
+  		el: "#app",
+  		data: {
+      		lists: accordionVals,
+          	activePanel: null
+  		},
+  		watch: {
+      		lists: function() {
+    			return this.lists;
+  			}
+  		},
+      	methods: {
+        	makeActive(itemIndex) {
+          		console.log('clicked' + itemIndex);
+      			this.activePanel === itemIndex
+        		? (this.activePanel = null)
+        		: (this.activePanel = itemIndex);
+    		},
+    		beforeEnter: function(el) {
+      			el.style.height = "0";
+    		},
+    		enter: function(el) {
+      			el.style.height = el.scrollHeight + "px";
+    		},
+    		beforeLeave: function(el) {
+      			el.style.height = el.scrollHeight + "px";
+    		},
+    		leave: function(el) {
+      			el.style.height = "0";
+    		}
+        },                    
+  		mounted() {
+    		this.activePanel = 0;
+  		}
+  	})
+};
+
+</script>
+
