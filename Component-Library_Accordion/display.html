@@ -1,0 +1,105 @@
+<style>
+.accordion {
+  	font-family: sans-serif;
+  	padding-bottom: 20px;
+}
+.accordion__panel {
+  	padding-bottom: 10px;
+}
+.accordion__panel-title {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px 10px 10px 50px;
+    margin: 0;
+    border-radius: 0;
+    color: #ffffff;
+    background: #000;
+    -webkit-transition: all 0.4s ease-in-out;
+  	-moz-transition: all 0.4s ease-in-out;
+  	-ms-transition: all 0.4s ease-in-out;
+  	-o-transition: all 0.4s ease-in-out;
+  	transition: all 0.4s ease-in-out;
+}
+.accordion__panel-title:hover, .accordion__panel-title.open {
+  	background: #e00122; //#555;
+}
+.accordion__panel-content {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 10px 0;
+}
+.accordion__panel-status-icon {
+  	transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 20px;
+}
+.accordion__panel-status-icon--active {
+  	transform: rotate(45deg);
+}
+
+.accordion__panel-content > p {
+    marign-bottom: 1em !important;
+}  
+</style>
+
+<div id="app">
+  	<div class="accordion">
+		<div class="accordion__panel" v-for="(item, index) in lists" :key="index">
+      		<h5 class="h5 accordion__panel-title" @click="makeActive(index)" :class="{ 'open': activePanel === index }">{{ item.title }}
+        		<span class="accordion__panel-status-icon" :class="{ 'accordion__panel-status-icon--active': activePanel === index }">+</span>
+      		</h5>
+      		<transition name="accordion" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:before-leave="beforeLeave" v-on:leave="leave">
+        		<div v-show="activePanel === index" class="accordion__panel-content">
+          			<p>{{ item.content }}</p>
+        		</div>
+      		</transition>
+    	</div>
+  	</div>
+</div>
+
+<script src="https://ucfoun-stg-bbis.concoursehost.com/file/webdev/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
+<script>
+function initAccordionComponent(instance) {
+  	var accordionVals = instance.settings["accordionItems"];
+  	console.log(accordionVals);
+  
+  	var app = new Vue({
+  		el: "#app",
+  		data: {
+      		lists: accordionVals,
+          	activePanel: null
+  		},
+  		watch: {
+      		lists: function() {
+    			return this.lists;
+  			}
+  		},
+      	methods: {
+        	makeActive(itemIndex) {
+          		console.log('clicked' + itemIndex);
+      			this.activePanel === itemIndex
+        		? (this.activePanel = null)
+        		: (this.activePanel = itemIndex);
+    		},
+    		beforeEnter: function(el) {
+      			el.style.height = "0";
+    		},
+    		enter: function(el) {
+      			el.style.height = el.scrollHeight + "px";
+    		},
+    		beforeLeave: function(el) {
+      			el.style.height = el.scrollHeight + "px";
+    		},
+    		leave: function(el) {
+      			el.style.height = "0";
+    		}
+        },                    
+  		mounted() {
+    		this.activePanel = 0;
+  		}
+  	})
+};
+
+</script>
