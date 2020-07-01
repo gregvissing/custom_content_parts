@@ -1,3 +1,5 @@
+/* Chris Kastner */
+
 <script type="text/javascript">
 function renderContent(data){
 		var content = data.settings.txtExcerpt;
