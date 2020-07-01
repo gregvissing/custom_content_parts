@@ -1,0 +1,375 @@
+<link rel="stylesheet" href="/client/styles/Admin/GenericUI.css" type="text/css" />
+
+<style type="text/css">
+	.BBPanelChangerWrapper {
+		background-color: #DCEBFE;
+		border: 1px solid #A6B6C5;
+		padding: 4px;
+	}
+
+	.BBPanelChangerInterior {
+		background-color: #FFFFFF;
+		border: 1px solid #A6B6C5;
+	}
+
+	.gridItem {
+		list-style-type: none;
+		list-style-image: none;
+		height: 22px;
+		border: none;
+	}
+
+	.SortableItemPadding {
+		padding: 3px 0;
+	}
+
+	.FieldHeading>Label {
+		float: left;
+		display: block;
+		padding: 5px 4px 2px 0px;
+		font-size: 12px;
+		height: 12px;
+	}
+
+	.FieldContent>input[type="text"] {
+		width: 100%;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	th {
+		font-weight: bold;
+	}
+
+	.StepGrouping {
+		margin-left: 0 !important;
+	}
+
+	.VerticalOption {
+		overflow: visible !important;
+	}
+
+	.tsaButton {
+		border-radius: 4px;
+		background: #e0eaf6;
+		border: 1px solid #a6b6c5;
+		padding: 10px 20px;
+		font-weight: bold;
+		cursor: pointer;
+		box-shadow: inset 0 20px 20px -10px rgba(255, 255, 255, 0.5), inset 0 -6px 40px -20px rgba(0, 0, 0, 0.2), inset 0 20px 0 rgba(255, 255, 255, 0.4);
+	}
+
+	.tsaButton:hover,
+	.tsaButton:focus {
+		background-color: #d7dee3;
+	}
+
+	.bannerImage img {
+		margin-top: 10px;
+		border: 1px solid #000;
+		width: 100%;
+		height: auto;
+	}
+
+	.error {
+		display: none;
+		color: #FF0000;
+		font-weight: bold;
+	}
+</style>
+
+<div class="StepGrouping">
+	<h1 class="StepGroupingHeading">Content</h1>
+	<div class="StepGroupingBody">
+		<div class="HelpText">
+			This will allow you to add Jumbotron Content to the site.
+		</div>
+
+		<div class="VerticalOption">
+			<div class="SelectOption">
+				<div class="">
+					<div class="FieldHeading">
+						<label for="txtExcerpt">Content:</label>
+					</div>
+					<div class="FieldContent">
+						<textarea class="tinymce" id="txtExcerpt" name="txtExcerpt" rows="15"
+							style="width: 100%;"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="VerticalOption">
+			<p><strong>Card Title:</strong> <input id="txtCardTitle" name="txtCardTitle" style="width: 100%;"
+					type="text"></p>
+			<p><strong>Selected Link Name:</strong> <input id="txtLinkName" name="txtLinkName" style="width: 100%;"
+					type="text"></p>
+			<p><strong>Selected Link URL:</strong> <input id="txtLinkUrl" name="txtLinkUrl" style="width: 100%;"
+					type="text"></p>
+			<p><button class="btn-select">Select Link</button></p>
+
+			<div>
+				<ul>
+					<li class="error error-permission">You do not have permission to launch the image picker.</li>
+					<li class="error error-validation error-text">Text is required.</li>
+					<li class="error error-validation error-image">Image is required.</li>
+				</ul>
+			</div>
+			<div class="TabContainer">
+				<div class="FieldSetRow">
+					<div class="FieldSetColumn FieldSetColumnFirst">
+						<div class="Field">
+							<div class="FieldHeading">
+								<label class="FieldLabel" for="field-highlighter-text">Text:</label> <span
+									class="FieldRequired">*</span> <span class="clear"></span>
+							</div>
+							<div class="FieldContentText">
+								<input class="FieldSelect FieldInput" data-validate=".error-text"
+									id="field-highlighter-text" type="text"> <input data-validate=".error-image"
+									id="field-highlighter-image-name" type="hidden"> <input data-validate=".error-image"
+									id="field-highlighter-image-url" type="hidden">
+							</div>
+						</div>
+						<div class="Field">
+							<div class="FieldHeading">
+								<label class="FieldLabel" for="field-highlighter-image">Image:</label> <span
+									class="FieldRequired">*</span> <span class="clear"></span>
+							</div>
+							<div class="FieldContent">
+								<div class="SearchFieldContainer">
+									<div class="SearchFieldBox">
+										<a class="SearchField ImagePicker" href="#"><span class="SearchFieldIcon"><img
+													alt="" src="/images/pencil_16.gif"></span> <span
+												class="SearchFieldText"></span>
+											<span class="SearchFieldButton"><img alt=""
+													src="/images/Admin/Buttons/search.gif"></span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="Field ImagePickerRender"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=u1z7mud98ppwucag8wv1vgvzl6uxxsth7l3qbv1go17ighu0'>
+</script>
+<script>
+	tinymce.init({
+		selector: 'textarea.tinymce',
+		theme: 'modern',
+		plugins: 'code print preview searchreplace autolink directionality visualchars fullscreen image link media codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+		toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+		image_advtab: true,
+		content_css: [
+			"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+			//"/file/css/bootstrap.css",
+			"/file/css/template.css"
+		]
+	});
+</script>
+
+<script type="text/javascript">
+	// Custom Content Part for NUS content
+	// Author:	Chris Kastner (chris.kastner@blackbaud.com.au)
+	// Date:	25/05/2018
+	// Version:	1.0
+
+	//trigger settings to change as the do not appear to update when the form is saved - so we can set them as the form gets entered.  This may not be necessary anymore.
+	$(document).on('change blur click focus',
+		'.StepGrouping input[type="text"], .StepGrouping input[type="URL"], .StepGrouping input[type="number"], .StepGrouping input[type="checkbox"], .StepGrouping input[type="radio"], .StepGrouping textarea, .StepGrouping select, .StepGrouping input[type="hidden"]',
+		function () {
+			var value = $(this).val().trim();
+			var setting = $(this).attr('name');
+		});
+	console.log("something changed!");
+
+	//loop through saved settings, and set text fields, select lists, textareas, and checkboxes (NB: not currently updating radio buttons as none have been required yet)
+	/*$(document).ready(function () {
+
+
+
+	});
+*/
+
+	function setupSettings() {
+		$.each(BLACKBAUD.api.customPartEditor.settings, function (key, value) {
+			if (key.substr(0, 3) === "chk" && value === "on") {
+				$('#' + key).prop('checked', 'checked').parents('table').first().addClass(
+					'CheckboxOptionSelected');
+			} else if (key.substr(0, 9) != "pagecntnt") {
+				console.log(value);
+				$('#' + key).val(value);
+			}
+		});
+
+		// Read our previously saved name (if it exists)
+		if (typeof BLACKBAUD.api.customPartEditor.settings.txtLinkName != '') {
+			console.log("selectedName" + BLACKBAUD.api.customPartEditor.settings.txtLinkName);
+			//$('#txtLinkName').val(BLACKBAUD.api.customPartEditor.settings.txtLinkName);
+		}
+
+		// Read our previously saved url (if it exists)
+		if (typeof BLACKBAUD.api.customPartEditor.settings.txtLinkUrl != '') {
+			console.log("selectedUrl" + BLACKBAUD.api.customPartEditor.settings.txtLinkUrl);
+			//$('#txtLinkUrl').val(BLACKBAUD.api.customPartEditor.settings.txtLinkUrl);
+		}
+
+		if (typeof BLACKBAUD.api.customPartEditor.settings.text == 'undefined' ||
+			typeof BLACKBAUD.api.customPartEditor.settings.image == 'undefined') {
+			BLACKBAUD.api.customPartEditor.settings = {
+				text: '',
+				image: {
+					url: ''
+				}
+			}
+		}
+	}
+
+	function bindImagePicker() {
+		if (!BLACKBAUD.api.customPartEditor.images.canLaunchImagePicker) {
+			$('.error-permission').show();
+		} else {
+			$('a.ImagePicker').click(function (e) {
+				e.preventDefault();
+				BLACKBAUD.api.customPartEditor.images.launchImagePicker({
+					callback: renderImage
+				});
+			});
+		}
+	}
+
+	function bindSave() {
+		BLACKBAUD.api.customPartEditor.onSave = function () {
+
+			tinyMCE.triggerSave();
+
+			if ($('input[required]').filter(function () {
+					return $(this).val().length == 0;
+				}).length > 0) {
+
+				return false;
+
+			} else {
+
+				var settings;
+
+				$('.StepGrouping input[type="text"], .StepGrouping input[type="URL"], .StepGrouping input[type="number"], .StepGrouping input[type = "checkbox"], .StepGrouping input[type = "radio"], .StepGrouping textarea, .StepGrouping select, .StepGrouping input[type = "hidden"]')
+					.each(function () {
+						var value = $(this).val().trim();
+						var setting = $(this).attr('name');
+
+						BLACKBAUD.api.customPartEditor.settings[setting] = value;
+					});
+
+				return true;
+
+			}
+
+			var success = true;
+
+			$('.error-validation').hide();
+			$('[data-validate]').each(function () {
+				var element = $(this);
+				if (element.val() == '') {
+					$(element.data('validate')).show();
+					success = false;
+				}
+			});
+
+			// Save text
+			BLACKBAUD.api.customPartEditor.settings.text = $('#field-highlighter-text').val();
+
+			return success;
+		}
+	}
+
+	function renderText() {
+		$('#field-highlighter-text').val(BLACKBAUD.api.customPartEditor.settings.text);
+	}
+
+	function renderImage(o) {
+		if (typeof o.name != 'undefined' && o.url != 'undefined') {
+			$('.ImagePicker .SearchFieldText').text(o.name);
+			$('.ImagePickerRender').html('<img alt="" src="' + o.url + '" />');
+			$('#field-highlighter-image-name').val(o.name);
+			$('#field-highlighter-image-url').val(o.url);
+		}
+		BLACKBAUD.api.customPartEditor.settings.image = o;
+	}
+
+	$(function () {
+		setupSettings();
+		bindImagePicker();
+		bindSave();
+		renderText();
+		renderImage(BLACKBAUD.api.customPartEditor.settings.image);
+	});
+
+	//run this when it saves (hint: return false to cancel the save)
+	BLACKBAUD.api.customPartEditor.onSave = function () {
+
+		tinyMCE.triggerSave();
+
+		if ($('input[required]').filter(function () {
+				return $(this).val().length == 0;
+			}).length > 0) {
+
+			return false;
+
+		} else {
+
+			var settings;
+
+			$('.StepGrouping input[type="text"], .StepGrouping input[type="URL"],  .StepGrouping input[type="number"], .StepGrouping input[type="checkbox"], .StepGrouping input[type="radio"], .StepGrouping textarea, .StepGrouping select, .StepGrouping input[type="hidden"]')
+				.each(function () {
+					var value = $(this).val().trim();
+					var setting = $(this).attr('name');
+
+					BLACKBAUD.api.customPartEditor.settings[setting] = value;
+				});
+
+			return true;
+
+		}
+
+	};
+
+	// Bind to the link launcher button
+	$('.btn-select').click(function (e) {
+
+		// Stop the button from submitting our form
+		e.preventDefault();
+
+		// Verify the user has permission to launch the link picker
+		if (!BLACKBAUD.api.customPartEditor.links.canLaunchLinkPicker) {
+
+			alert('You do not have permission to launch the link picker.');
+
+		} else {
+
+			// Launch the link picker, passing in our callback
+			BLACKBAUD.api.customPartEditor.links.launchLinkPicker({
+				callback: function (selectedLink) {
+					$('#txtLinkUrl').val(selectedLink.name);
+					$('#txtLinkName').val(selectedLink.url);
+				}
+			});
+
+		}
+	});
+
+	//trigger on checkbox change to set the value properly... there's a bug in chrome that sets the checkbox value to 'on' even when it's been unchecked.
+	$(document).on('change', 'input[type="checkbox"]', function () {
+		var checked = $(this).is(':checked');
+		if (!checked) {
+			$(this).val("off");
+		} else {
+			$(this).val("on");
+		}
+	});
+</script>
