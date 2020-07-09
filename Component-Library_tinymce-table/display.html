@@ -1,0 +1,9 @@
+<script type="text/javascript">
+function renderTinyContent(data){
+		var content = data.settings.txtExcerpt;
+		$('.jumbotron.custom-placeholder').not('[id]').first().attr('id','ID_'+data.elementId);
+        
+        $('#ID_'+data.elementId).html(content);
+}
+</script>
+<div class="jumbotron custom-placeholder"></div>
