@@ -1,0 +1,1653 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/client/styles/Admin/GenericUI.css" type="text/css" />
+
+<style>
+	.VerticalOption:after {
+		content: "";
+		display: block;
+		widtH: 100%;
+		clear: both;
+	}
+
+	.BBPanelChangerWrapper {
+		background-color: #DCEBFE;
+		border: 1px solid #A6B6C5;
+		padding: 4px;
+	}
+
+	.BBPanelChangerInterior {
+		background-color: #FFFFFF;
+		border: 1px solid #A6B6C5;
+	}
+
+	.gridItem {
+		list-style-type: none;
+		list-style-image: none;
+		height: 22px;
+		border: none;
+	}
+
+	.SortableItemPadding {
+		padding: 3px 0;
+	}
+
+	.FieldHeading>Label {
+		float: left;
+		display: block;
+		padding: 5px 4px 2px 0px;
+		font-size: 12px;
+		height: 12px;
+	}
+
+	.FieldContent>input[type="text"] {
+		width: 100%;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	th {
+		font-weight: bold;
+	}
+
+	.ItemActionAdd {
+		display: inline-block;
+		height: 20px;
+		background: -webkit-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
+		padding: 6px;
+		border-radius: 4px;
+		box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.5), inset -2px -2px 0px rgba(0, 0, 0, 0.1), 0px 2px 5px -3px black;
+		color: #333;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+	}
+
+	.ItemActionAdd,
+	.ItemActionAdd:visited,
+	.ItemActionAdd:hover {
+		color: #333;
+	}
+
+	.ItemActionAdd:hover {
+		background: -webkit-linear-gradient(top, #CAEBFC 0%, #C0DBE9 50%, #A0CCEB 51%, #829AB2 100%);
+		box-shadow: inset -1px -1px 0px rgba(255, 255, 255, 0.5), inset -1px -1px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px -2px black;
+	}
+
+	.ItemActionMove {
+		cursor: move;
+	}
+
+	.ItemActionDelete {
+		cursor: pointer;
+	}
+
+	.ItemTable {
+		border: 1px solid #a6b6c5;
+	}
+
+	.ItemTable tr {
+		background: #F2F6FB;
+		border-top: 1px solid #A6B6C5;
+	}
+
+	.ItemTable tr:nth-child(2n-1) {
+		background: #ffffff;
+		border-top: 1px solid #A6B6C5;
+	}
+
+	.ItemTable td,
+	.ItemTable th {
+		padding: 4px;
+	}
+
+	.ItemContainer {
+		margin: 0px 0px 10px 0px;
+		background-color: #dee9fd;
+		margin-top: 10px;
+		padding: 15px 5px;
+		border: 1px solid #a6b6c5;
+	}
+
+	.ItemTable thead tr {
+		background-color: #dee9fd !important;
+	}
+
+	.ItemTable thead tr th {
+		border-bottom: 1px solid #a6b6c5;
+	}
+
+	.StepGrouping {
+		margin-left: 0 !important;
+	}
+
+	.VerticalOption {
+		overflow: visible !important;
+	}
+
+	.ui-sortable-helper {
+		border: 1px solid #A6B6C5;
+		box-shadow: 5px 5px 15px -10px black;
+		opacity: 0.9;
+	}
+
+	textarea {
+		resize: vertical;
+		min-width: 280px;
+	}
+
+	.caption {
+		color: #999;
+		font-size: 9px;
+		font-style: italic;
+		white-space: normal;
+	}
+
+	.ItemContainer h1 {
+		font-size: 1.2rem;
+		margin-bottom: 20px;
+	}
+
+	.minimum_recurring p {
+		padding: 0.5rem 0 1rem;
+		font-style: italic;
+	}
+
+	.ItemActionAdd {
+		background: #56a076;
+		box-shadow: none;
+		text-shadow: none;
+		margin-bottom: 1rem;
+		color: white;
+	}
+
+	.ItemActionAdd:hover {
+		background: green;
+	}
+
+	.ItemActionAdd * {
+		color: white !important;
+	}
+
+	.StepGrouping {
+		padding: 10px;
+	}
+
+	.ItemContainer {
+		padding: 20px;
+	}
+
+	.ItemTable thead tr {
+		background: #7b8ba7 !important;
+		color: white !important;
+	}
+
+	.StepGrouping label {
+		font-weight: bold;
+	}
+
+	a.cear {
+		font-weight: normal;
+		color: #000;
+	}
+
+	.alert {
+		padding: 5px 0px 15px;
+		color: red;
+		font-weight: bold;
+	}
+
+	.ItemTable .ItemRow {
+		background: #dee9fd;
+		padding: 10px;
+		box-shadow: 0 0 0px 1px #bcd0ec;
+	}
+
+	.ItemTable .ItemRow:nth-child(2n-1) {
+		background: #f2f6ff;
+	}
+
+	.ItemContainer {
+		padding: 0;
+		border: 0;
+		background-color: #f2f6ff;
+	}
+
+	.ItemTable {
+		border: 0;
+	}
+
+	a.ItemActionAdd {
+		text-decoration: none;
+		line-height: 1;
+		margin-bottom: 0;
+		height: auto;
+		padding: 10px 20px;
+		background: #58af7f;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+
+	.ItemActionAdd:hover {
+		background-color: #3e9a67;
+	}
+
+	.ItemRow {
+		font-size: 0.9rem;
+	}
+
+	.ItemActions a {
+		font-size: 1.1rem;
+	}
+
+	a.ItemActionMove {
+		color: #4988d6;
+	}
+
+	a.ItemActionDelete {
+		color: #de6060;
+	}
+
+	.ui-dialog .ui-widget-header {
+		background: none;
+		border: 0;
+		font-size: 1.1rem;
+		padding: 0.5rem 0.7rem;
+	}
+
+	span.ui-button-icon-primary.ui-icon.ui-icon-closethick {
+		/* border: 0; */
+		background-color: none;
+	}
+
+	div#newItem {
+		font-size: 1rem;
+		padding: 0 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 2;
+	}
+
+	select#NewItemFieldType {
+		width: 100%;
+		padding: 9px;
+		color: #333;
+	}
+
+	div#newItem label {
+		width: 100%;
+		display: block;
+	}
+
+
+	.ItemRow {
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-start;
+		flex-direction: row;
+	}
+
+	.ItemRow .Center {
+		flex-grow: 1;
+	}
+
+
+	.Counter span {
+		font-size: 2rem;
+		font-weight: bold;
+		color: #c3d0e8;
+		padding: 0 10px 0 0;
+	}
+
+	.Counter {
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
+	.ItemActions {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+		align-items: center;
+	}
+
+	.ItemActions a {
+		padding: 5px;
+		font-size: 1.4rem;
+	}
+
+	div.Question {
+		flex-grow: 1;
+	}
+
+	.Center {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.Center .top {
+		display: flex;
+		justify-content: stretch;
+	}
+
+	label>input[type="text"],
+	label>select,
+	label>input[type="number"] {
+		display: block;
+	}
+
+	span.helper {
+		font-size: 0.8rem;
+		color: #888;
+	}
+
+	.top input {
+		width: 100%;
+		padding: 10px;
+		font-size: 1rem;
+		color: #333;
+	}
+
+	.top span.helper {
+		margin-top: 5px;
+	}
+
+	.ItemContainer * {
+		box-sizing: border-box;
+	}
+
+	.ItemRow>div>div>div {
+		padding: 5px;
+	}
+
+	.LinkAttribute {
+		padding: 5px;
+	}
+
+	.DisplayCondition {
+		padding: 5px;
+	}
+
+	.FieldType {
+		padding: 0 5px;
+		text-transform: uppercase;
+		font-weight: bold;
+		color: #fff;
+		text-align: right;
+	}
+
+	.ItemTable .ItemRow:nth-child(2n-1) .FieldType {
+		color: #b9cbec;
+	}
+
+	.Col3 {
+		display: flex;
+		flex-direction: row;
+		column-count: 3;
+		justify-content: stretch;
+	}
+
+	.Col3>div {
+		width: 33.33333%;
+	}
+
+	input.error,
+	select.error {
+		box-shadow: inset 0 0 1px 1px #de5f60;
+		border: 0;
+	}
+
+	label.error {
+		background: #de5f60;
+		width: 100%;
+		display: block;
+		padding: 5px;
+		color: white;
+	}
+
+	.Col3>div>label:first-child {
+		background: white;
+		display: block;
+		border: 1px solid #b8c3d8;
+		padding: 5px;
+	}
+
+	.Col3>div>div {
+		background: #f2f6ff;
+		padding: 10px;
+		border: 1px solid #b8c3d8;
+		border-top: 0;
+	}
+
+	.ItemRow:nth-child(2n-1) .Col3>div>div {
+		background: #dee9fd;
+	}
+
+	.Col3>div>div select,
+	.Col3>div>div input[type="text"] {
+		width: 100%;
+		padding: 5px;
+		margin-bottom: 10px;
+	}
+
+	.LinkAttributeExpand br {
+		display: none;
+	}
+
+
+	.MaxLength {
+		max-width: 140px;
+	}
+
+	span.helper {
+		display: block;
+	}
+
+
+	.ItemHeader {
+		display: flex;
+		align-items: center;
+		font-size: 1rem;
+	}
+
+	.ItemActions {
+		flex-direction: row;
+	}
+
+	.FieldType {
+		flex-grow: 1;
+		text-align: left;
+		color: #9cadcc !important;
+	}
+
+	.Counter span {
+		font-size: inherit;
+		padding-right: 0;
+		color: #9cadcc;
+	}
+
+	a.ItemActionMove,
+	a.ItemActionDelete {
+		color: #9cadcc;
+	}
+
+	.ItemRow .ItemHeader>div {
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+
+
+	.ItemRow[data-type="page break"] {
+		background: #3c5875 !important;
+		box-shadow: 0 0 0 1px #3c5875;
+	}
+
+	.ItemActions>a {
+		margin-left: 10px;
+	}
+
+
+	.Col3 label.error {
+		margin-top: -10px;
+		margin-bottom: 5px;
+	}
+
+
+	.Col3>div.open>label {
+		background: #56a076;
+		color: white;
+	}
+
+	.Col3>div>label {
+		transition: all 150ms ease-in-out;
+	}
+
+	.CodeTable input,
+	.Country input {
+		min-width: 280px;
+		font-family: consolas, "Courier New", monospace;
+		font-size: 0.8rem;
+		line-height: 1.15rem;
+	}
+
+	.flexgrid {
+		display: table;
+	}
+
+	.flexgrid>header {
+		display: table-header-group;
+	}
+
+	.flexgrid>header>div {
+		display: table-cell;
+		font-weight: bold;
+		padding: 5px;
+		width: 30px;
+		text-align: center;
+	}
+
+	.flexgrid>section {
+		display: table-row-group;
+	}
+
+	.flexgrid>section>div {
+		display: table-row;
+		background: #dee9fd;
+	}
+
+	.flexgrid>section>div:nth-child(2n-1) {
+		background: #f2f6ff;
+	}
+
+	.flexgrid>section>div>div {
+		display: table-cell;
+		padding: 5px;
+		text-align: center;
+	}
+
+	.flexgrid .body-header-cell {
+		font-weight: normal;
+		text-align: left !important;
+		max-width: 200px;
+	}
+
+	.flexgrid .spacer {
+		width: auto !important;
+		;
+	}
+
+	.Center .middle {
+		display: flex;
+		justify-content: stretch;
+	}
+
+	div.Help {
+		flex-grow: 1;
+	}
+
+	div.Help input {
+		width: 100%;
+	}
+
+	.ColumnWidth select {
+		width: 100%;
+	}
+
+	div.Help input {
+		padding: 5px;
+		font-size: 0.8rem;
+		color: #777;
+	}
+
+	div.ColumnWidth select {
+		padding: 5px;
+		font-size: 0.8rem;
+	}
+
+	.CodeTableMulti input {
+		text-align: left;
+		margin-left: 0;
+		width: auto;
+	}
+
+	.flexgrid .body-header-cell span {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 0.6rem;
+		color: #949494;
+		display: block;
+		line-height: 0.8rem;
+	}
+
+	.AddressMap {
+		display: flex;
+		justify-content: stretch;
+	}
+
+	.AddressMap div[data-map] {
+		flex-grow: 1;
+	}
+
+	.AddressMap div[data-map] label {
+		display: block;
+	}
+
+	.map-label label {
+		font-weight: bold;
+	}
+
+	.AddressMap div[data-map] select {
+		width: 100%;
+		display: block;
+		padding: 5px;
+		font-size: 0.8rem;
+	}
+</style>
+<div id="BBTabs">
+
+	<ul>
+		<li><a href="#tab-1">Content</a></li>
+		<!-- <li><a href="#tab-2">Settings</a></li>
+		<li><a href="#tab-3">Question Matrix</a></li> -->
+	</ul>
+
+	<!-- FIELDS -->
+	<div id="tab-1" class="StepGrouping">
+		<h1 class="StepGroupingHeading">
+			Page Content
+		</h1>
+		<div class="StepGroupingBody">
+
+			<div class="HelpText">
+				Add, update, remove, and re-order your page content.
+			</div>
+
+			<div class="VerticalOption">
+				<div class="ItemContainer">
+
+					<div class="ItemTable" cellspacing="0" cellpadding="0">
+						<div class="ItemRow" id="ItemRowTemplate">
+							<input type="hidden" id="ItemIndex_0" name="ItemIndex_0" />
+
+							<div class="Center">
+
+								<div class="ItemHeader">
+
+									<div class="Counter">
+										<span>0</span>
+									</div>
+									<div class="FieldType">
+									</div>
+
+									<div class="ItemActions" id="DivItemActions_0">
+										<a class="ItemActionMove">
+											<i class="fa fa-arrows-v"></i>
+										</a>
+										<a class="ItemActionDelete">
+											<i class="fa fa-trash"></i>
+										</a>
+									</div>
+
+								</div>
+
+								<div class="top">
+
+									<div class="Question" id="DivQuestion_0">
+										<label>Content: <input class="form-control required" type="text"
+												name="Question_0" id="Question_0" /></label>
+									</div>
+									<div class="Card" id="DivCard_0">
+										<label>Content: <textarea class="form-control required tinymce" rows="15"
+												style="width: 100%;" name="Card_0" id="Card_0"></textarea></label>
+									</div>
+									<div class="TextEditor" id="DivTextEditor_0">
+										<label>Content: <input class="form-control required" name="TextEditor_0"
+												id="TextEditor_0" />></label>
+									</div>
+									<div class="MaxLength" id="DivMaxLength_0">
+										<label>Max length: <input class="form-control" type="number" step="1"
+												value="255" name="MaxLength_0" id="MaxLength_0" /></label>
+										<span class="helper">Limited to 255</span>
+									</div>
+									<div class="CodeTable" id="DivCodeTable_0">
+										<label>Code Table ID: <input class="form-control required" type="text"
+												name="CodeTable_0" id="CodeTable_0" /></label>
+										<span class="helper">GUID of the code table</span>
+									</div>
+									<div class="CodeTableMulti" id="DivCodeTableMulti_0">
+										<label>Allow Multiple: <input class="form-control" type="checkbox"
+												name="CodeTableMulti_0" id="CodeTableMulti_0" /></label>
+										<span class="helper">Disables attribute link</span>
+									</div>
+									<div class="Country" id="DivCountry_0">
+										<label>Country ID: <input class="form-control" type="text" name="Country_0"
+												id="Country_0" /></label>
+										<span class="helper">GUID of the Country</span>
+									</div>
+
+								</div>
+
+								<div class="middle">
+									<div class="Help" id="DivHelp_0">
+										<label>Help Text: <input class="form-control " type="text" name="Help_0"
+												id="Help_0" /></label>
+									</div>
+									<div class="ColumnWidth" id="DivColumnWidth_0">
+										<label>Columns(/12): <select class="form-control" name="ColumnWidth_0"
+												id="ColumnWidth_0">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+												<option>11</option>
+												<option selected="selected">12</option>
+											</select>
+										</label>
+									</div>
+								</div>
+
+								<!-- <div class="AddressMap">
+									<div class="map-label">
+										<label>Map output to:</label>
+									</div>
+									<div class="AddressMap_Address" id="DivAddressMap_Address_0" data-map="address">
+										<label for="ddAddressMap_Address_0">Address field</label>
+										<select class="" id="ddAddressMap_Address_0"
+											name="ddAddressMap_Address_0"></select>
+									</div>
+									<div class="AddressMap_Suburb" id="DivAddressMap_Suburb_0" data-map="suburb">
+										<label for="ddAddressMap_Suburb_0">Suburb field</label>
+										<select class="" id="ddAddressMap_Suburb_0"
+											name="ddAddressMap_Suburb_0"></select>
+									</div>
+									<div class="AddressMap_State" id="DivAddressMap_State_0" data-map="state">
+										<label for="ddAddressMap_State_0">Address field</label>
+										<select class="" id="ddAddressMap_State_0" name="ddAddressMap_State_0"></select>
+									</div>
+									<div class="AddressMap_Postcode" id="DivAddressMap_Postcode_0" data-map="postcode">
+										<label for="ddAddressMap_Postcode_0">Postcode field</label>
+										<select class="" id="ddAddressMap_Postcode_0"
+											name="ddAddressMap_Postcode_0"></select>
+									</div>
+
+								</div> -->
+
+								<div class="Col3">
+									<div class="QuestionRequired" id="DivQuestionRequired_0">
+										<label><input class="form-control" type="checkbox" name="QuestionRequired_0"
+												id="QuestionRequired_0" /> Mark as required</label>
+									</div>
+
+									<div class="LinkAttribute" id="DivLinkAttribute_0">
+										<label><input class="form-control" type="checkbox" name="LinkAttribute_0"
+												id="LinkAttribute_0" /> Link to attribute</label>
+
+										<div class="LinkAttributeExpand" style="display: none;">
+											<label>Attribute label: <input class="form-control  required" type="text"
+													name="Attribute_0" id="Attribute_0" /></label><br />
+											<span class="helper">Must match exactly what has been set up on the
+												Interaction Add form</span>
+										</div>
+
+									</div>
+
+									<div class="DisplayCondition" id="DivDisplayCondition_0">
+										<label><input class="form-control" type="checkbox" name="DisplayCondition_0"
+												id="DisplayCondition_0" /> Display conditionally</label>
+										<div class="DisplayconditionExpand" style="display: none;">
+											<span>Where</span>
+											<select name="ddDisplayConditionCompare_0" id="ddDisplayConditionCompare_0">
+												<option>&lt;Select a question&gt;</option>
+												<option>This will be populated</option>
+												<option>With a list of questions</option>
+											</select>
+											<span>is</span>
+											<select name="ddDisplayConditionIs_0" id="ddDisplayConditionIs_0">
+												<option value="equals">Equal To</option>
+												<option value="not">Not Equal To</option>
+											</select>
+											<div class="FieldCompare">
+												<input class="required" type="text" name="ddDisplayConditionValText_0"
+													id="ddDisplayConditionValText_0" />
+												<input type="checkbox" name="ddDisplayConditionIsCheckbox_0"
+													id="ddDisplayConditionIsCheckbox_0" />
+												<select class="required" id="ddDisplayConditionCodeTable_0"
+													name="ddDisplayConditionCodeTable_0">
+												</select>
+												<select class="required" id="ddDisplayConditionEventCategory_0"
+													name="ddDisplayConditionEventCategory_0">
+
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<a class="ItemActionAdd" class="BBAdminButtonLnk" href="#">
+					<span class="BBAdminButtonContent">
+						<span ass="BBAdminButtonLabel">
+							<i class="fa fa-plus-circle"></i> Add Content
+						</span>
+					</span>
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div id="newItem" title="Add a new question">
+	<label>Field type:<br />
+		<select id="NewItemFieldType">
+			<option value="heading1">Heading 1</option>
+			<option value="heading2">Heading 2</option>
+			<option value="heading3">Heading 3</option>
+			<option value="heading4">Heading 4</option>
+			<option value="heading5">Heading 5</option>
+			<option value="heading6">Heading 6</option>
+			<option value="blockquote">Quote</option>
+			<option value="paragraph">Paragraph</option>
+			<option value="image">Image</option>
+			<option value="accordion">Accordion (In Progress)</option>
+			<option value="card">Card (In Progress)</option>
+			<option value="hr">Horizontal Rule</option>
+			<option value="editor">Text Editor</option>
+		</select>
+	</label>
+</div>
+
+<script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=fumj9z8yv4qy4s2g3oavh5niw3wih0um39snmcgcnzxmlidc'>
+</script>
+<script src="https://cdn.tiny.cloud/1/fumj9z8yv4qy4s2g3oavh5niw3wih0um39snmcgcnzxmlidc/tinymce/5/jquery.tinymce.min.js"
+	referrerpolicy="origin"></script>
+<script>
+	tinymce.init({
+		selector: 'textarea.tinymce',
+		setup: function (editor) {
+			editor.on('init', function (e) {
+				console.log('The Editor has initialized.');
+			});
+		},
+		theme: 'modern',
+		plugins: 'code print preview searchreplace autolink directionality visualchars fullscreen image link media codesample
+		table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists textcolor wordcount imagetools contextmenu
+		colorpicker textpattern help ',
+		toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright
+		alignjustify | numlist bullist outdent indent | removeformat ',
+		image_advtab: true,
+		content_css: [
+			"https://foundation.uc.edu/file/webdev/css/bootstrap.min.css",
+			"/file/css/template.css"
+		]
+	});
+</script>
+<script>
+	//variables etc.
+	var count = 0;
+	var $item = {};
+	var ready = false;
+	//FIELD SETTINGS
+	var Fields = {};
+	Fields["heading1"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["heading2"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["heading3"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["heading4"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["heading5"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["heading6"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["image"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": true,
+		"AddressMap": false
+	};
+	Fields["blockquote"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": true,
+		"AddressMap": false
+	};
+	Fields["paragraph"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": true,
+		"AddressMap": false
+	};
+	Fields["hr"] = {
+		"Question": false,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": false,
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": null,
+		"ColumnWidth": true,
+		"AddressMap": false
+	};
+	Fields["accordion"] = {
+		"Question": true,
+		"Card": false,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["card"] = {
+		"Question": false,
+		"Card": true,
+		"TextEditor": false,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+	Fields["editor"] = {
+		"Question": false,
+		"Card": false,
+		"TextEditor": true,
+		"Help": false,
+		"QuestionRequired": false,
+		"MaxLength": false,
+		"LinkAttribute": false,
+		"DisplayCondition": false,
+		"TextFieldType": "text",
+		"EventCateogry": false,
+		"QAS": false,
+		"CodeTable": false,
+		"CodeTableMulti": false,
+		"Country": false,
+		"ConditionFieldType": "text",
+		"ColumnWidth": false,
+		"AddressMap": false
+	};
+
+
+	var ConditionFieldType = {};
+	ConditionFieldType["text"] = {
+		"ddDisplayConditionValText": true,
+		"ddDisplayConditionIsCheckbox": false,
+		"ddDisplayConditionCodeTable": false,
+		"ddDisplayConditionEventCategory": false
+	}
+	ConditionFieldType["checkbox"] = {
+		"ddDisplayConditionValText": false,
+		"ddDisplayConditionIsCheckbox": true,
+		"ddDisplayConditionCodeTable": false,
+		"ddDisplayConditionEventCategory": false
+	}
+	ConditionFieldType["code table"] = {
+		"ddDisplayConditionValText": false,
+		"ddDisplayConditionIsCheckbox": false,
+		"ddDisplayConditionCodeTable": true,
+		"ddDisplayConditionEventCategory": false
+	}
+	ConditionFieldType["event category"] = {
+		"ddDisplayConditionValText": false,
+		"ddDisplayConditionIsCheckbox": false,
+		"ddDisplayConditionCodeTable": false,
+		"ddDisplayConditionEventCategory": true
+	}
+
+	$item.Row = {};
+	$item.Container = {};
+	$item.Table = {};
+	$item.Row = $('#ItemRowTemplate').clone();
+	$item.Container = $('.ItemContainer');
+	$item.Table = $('.ItemTable');
+
+	$('#ItemRowTemplate').remove();
+
+	//loop through saved settings, and set text fields, select lists, textareas, and checkboxes (NB: not currently updating radio buttons as none have been required yet)
+	$(document).ready(function () {
+		$('#ddCountries').val(BLACKBAUD.api.customPartEditor.settings["ddCountries"]);
+		$('#ddCountries').multiSelect()
+
+		//load Event Categories
+		$.get("/WebAPI/CodeTable/b328e14b-9269-4b6c-bf93-7b10c70f71c3", function (data) {
+			$('#ddEventCategories').empty();
+			$.each(data, function () {
+				$('#ddEventCategories').append('<option value="' + this.Id + '">' + this
+					.Description + '</option>');
+			});
+			$.each(BLACKBAUD.api.customPartEditor.settings["ddEventCategories"], function (key, value) {
+				$('#ddEventCategories').find('option[value="' + key + '"]').prop('selected', true);
+			});
+
+			$('#ddEventCategories').multiSelect();
+			ready = true;
+		});
+
+		$.each(BLACKBAUD.api.customPartEditor.settings, function (key, value) {
+			if (key.substr(0, 3) === "chk" && value === "on") {
+				$('#' + key).prop('checked', true).parents('table').first().addClass(
+					'CheckboxOptionSelected');
+			} else {
+				$('#' + key).val(value);
+			}
+		});
+
+		var CheckReady = setInterval(function () {
+			if (ready) {
+				$.each(BLACKBAUD.api.customPartEditor.settings["items"], function (i) {
+					addRow(BLACKBAUD.api.customPartEditor.settings["items"][i]);
+				});
+				$('.Col3 label input[type="checkbox"]:checked').closest('div').addClass('open');
+				ready = false;
+				clearInterval(CheckReady);
+			}
+		}, 100);
+
+		// BuildAddressMapSelectors();
+		BuildConditionalSelects();
+		BuildMatrix();
+
+	});
+
+	Sys.Application.add_load(function () {
+		$('form').validate({
+			ignore: ":not(:visible)"
+		});
+	});
+
+	//run this when it saves (hint: return false to cancel the save)
+	BLACKBAUD.api.customPartEditor.onSave = function () {
+
+		if ($('form').valid()) {
+			var items = [];
+
+			$('#BBTabs input[type="checkbox"], #BBTabs input[type="radio"]').each(function () {
+				var checked = $(this).is(':checked');
+				if (!checked) {
+					$(this).val("off");
+				} else {
+					$(this).val("on");
+				}
+			});
+
+			$item.Table.find('.ItemRow').each(function (i) {
+
+				var rowdata = {
+					type: $(this).attr('data-type'),
+					question: $(this).find('.Question input').val(),
+					card: $(this).find('.Card textarea').val(),
+					editor: $(this).find('.TextEditor textarea').val(),
+					help: $(this).find('.Help input').val(),
+					columns: $(this).find('.ColumnWidth select').val(),
+					required: $(this).find('.QuestionRequired input').val(),
+					maxLength: $(this).find('.MaxLength input').val(),
+					linkAttr: $(this).find('.LinkAttribute input[type="checkbox"]').val(),
+					linkAttrLabel: $(this).find('.LinkAttribute input[type="text"]').val(),
+					conditional: $(this).find('.DisplayCondition label input').val(),
+					conditionalOperator: $(this).find('.DisplayCondition select[id^=ddDisplayConditionIs]')
+						.val(),
+					conditionalCompare: $(this).find(
+						'.DisplayCondition select[id^=ddDisplayConditionCompare]').val(),
+					conditionalFields: {
+						textfield: $(this).find('.DisplayCondition input[id^=ddDisplayConditionValText]')
+							.val(),
+						checkbox: $(this).find('.DisplayCondition input[id^=ddDisplayConditionIsCheckbox]')
+							.val(),
+						codetable: $(this).find(
+							'.DisplayCondition select[id^=ddDisplayConditionCodeTable]').val(),
+						eventcategory: $(this).find(
+							'.DisplayCondition select[id^=ddDisplayConditionEventCategory]').val()
+					},
+					codeTableID: $(this).find('.CodeTable input[type="text"]').val(),
+					codeTableMulti: $(this).find('.CodeTableMulti input[type="checkbox"]').val(),
+					countryID: $(this).find('.Country input[type="text"]').val(),
+					index: $(this).find('input[id^=ItemIndex]').val(),
+					AddressMap: {
+						Address: $(this).find('.AddressMap_Address select').val(),
+						Suburb: $(this).find('.AddressMap_Suburb select').val(),
+						State: $(this).find('.AddressMap_State select').val(),
+						Postcode: $(this).find('.AddressMap_Postcode select').val()
+					}
+
+				};
+				items.push(rowdata);
+
+			});
+
+			var EventCategories = {};
+			$('#ddEventCategories option:selected').each(function () {
+				EventCategories[$(this).val()] = $(this).text();
+			});
+
+			BLACKBAUD.api.customPartEditor.settings["items"] = items;
+			BLACKBAUD.api.customPartEditor.settings["ddEventCategories"] =
+				EventCategories; //$('#ddEventCategories').val();
+			BLACKBAUD.api.customPartEditor.settings["ddCountries"] = $('#ddCountries').val();
+			BLACKBAUD.api.customPartEditor.settings["txtShow"] = $('#txtShow').val();
+			BLACKBAUD.api.customPartEditor.settings["txtLimit"] = $('#txtLimit').val();
+			BLACKBAUD.api.customPartEditor.settings["txtAPI"] = $('#txtAPI').val();
+			BLACKBAUD.api.customPartEditor.settings["txtButtonNext"] = $('#txtButtonNext').val();
+			BLACKBAUD.api.customPartEditor.settings["txtButtonPrev"] = $('#txtButtonPrev').val();
+
+			return true;
+
+		} else {
+			return false;
+		}
+
+	};
+
+
+
+	//trigger on checkbox change to set the value properly... there's a bug in chrome that sets the checkbox value to 'on' even when it's been unchecked.
+	$(document).on('change', '#BBTabs input[type="checkbox"], #BBTabs input[type="radio"]', function () {
+		var checked = $(this).is(':checked');
+		if (!checked) {
+			$(this).val("off");
+		} else {
+			$(this).val("on");
+		}
+	});
+
+	// Return a helper with preserved width of cells
+	var fixHelper = function (e, ui) {
+		ui.children().each(function (i) {
+			$(this).width($(this).width());
+		});
+		return ui;
+	};
+
+	$item.Table.sortable({
+		handle: '.ItemActionMove',
+		cursor: 'move',
+		helper: fixHelper,
+		update: function (event, ui) {
+			$item.Table.find('.ItemRow').each(function (i) {
+				$(this).find(".Counter span").text(i + 1);
+			});
+
+			// BuildAddressMapSelectors();
+			BuildConditionalSelects();
+			BuildMatrix();
+		}
+	});
+
+	//functions
+	function addRow(item) {
+
+		console.log(item);
+		var $newRow = $item.Row.clone();
+		var count = GetID();
+
+		if (item !== undefined) {
+			count = item.index;
+		}
+
+		$newRow.find('div, select, input').each(function () {
+			var ID = $(this).attr('id');
+			var name = $(this).attr('name');
+
+			if (ID !== undefined) {
+				var newID = ID.replace("_0", "_" + count);
+				$(this).attr('id', newID);
+			}
+			if (name !== undefined) {
+				var newName = name.replace("_0", "_" + count);
+				if ($(this).attr('type') != "radio") {
+					$(this).attr('name', newName);
+				} else {
+					$(this).attr('name', 'item_' + name);
+				}
+			}
+		});
+
+		$newRow.find('select[id^=ddDisplayConditionEventCategory]').append($('#ddEventCategories option:selected')
+			.clone());
+
+		if (item !== undefined) {
+			$newRow.find('.Question input').val(item.question);
+			$newRow.find('.Card input').val(item.question);
+			$newRow.find('.QuestionRequired input').prop('checked', item.required == "on");
+			$newRow.find('.Help input').val(item.help);
+			$newRow.find('.ColumnWidth select').val(item.columns);
+			$newRow.find('.LinkAttribute input[type="checkbox"]').prop('checked', item.linkAttr == "on");
+			$newRow.find('.LinkAttribute input[type="text"]').val(item.linkAttrLabel);
+			$newRow.find('.MaxLength input').val(item.maxLength);
+			$newRow.find('.CodeTable input').val(item.codeTableID);
+			$newRow.find('.CodeTableMulti input').prop('checked', item.codeTableMulti == "on");
+			$newRow.find('.DisplayCondition label input[type="checkbox"]').prop('checked', item.conditional == "on");
+			$newRow.find('.DisplayCondition select[id^=ddDisplayConditionIs]').val(item.conditionalOperator);
+			$newRow.find('.DisplayCondition select[id^=ddDisplayConditionCompare]').attr('data-value', item
+				.conditionalCompare);
+			$newRow.find('.DisplayCondition input[id^=ddDisplayConditionValText]').val(item.conditionalFields.textfield);
+			$newRow.find('.DisplayCondition input[id^=ddDisplayConditionIsCheckbox]').prop('checked', item.conditional ==
+				"on");
+			$newRow.find('.DisplayCondition select[id^=ddDisplayConditionCodeTable]').attr('data-value', item
+				.conditionalFields.codetable);
+			$newRow.find('.DisplayCondition input[id^=ddDisplayConditionEventCategory]').val(item.conditionalFields
+				.eventcategory);
+			if (item.AddressMap) {
+				$newRow.find('.AddressMap_Address select').attr('data-value', item.AddressMap.Address);
+				$newRow.find('.AddressMap_Suburb select').attr('data-value', item.AddressMap.Suburb);
+				$newRow.find('.AddressMap_State select').attr('data-value', item.AddressMap.State);
+				$newRow.find('.AddressMap_Postcode select').attr('data-value', item.AddressMap.Postcode);
+			}
+			$newRow.find('.Country input').val(item.countryID);
+
+			$newRow.attr('data-type', item.type);
+			$newRow.find('.FieldType').text(item.type);
+			$newRow.find('input[id^=ItemIndex]').val(item.index);
+		} else {
+			$newRow.find('input[id^=ItemIndex]').val(count);
+			$newRow.attr('data-type', $('#NewItemFieldType').val());
+			$newRow.find('.FieldType').text($('#NewItemFieldType').val());
+		}
+
+		$newRow.find('.LinkAttributeExpand, .DisplayconditionExpand').slideUp(0);
+		if ($newRow.find('.LinkAttribute input[type="checkbox"]').is(':checked')) {
+			$newRow.find('.LinkAttributeExpand').slideDown(150);
+		}
+		if ($newRow.find('.DisplayCondition input[type="checkbox"]').is(':checked')) {
+			$newRow.find('.DisplayconditionExpand').slideDown(150);
+		}
+
+		$.each(Fields[$newRow.attr('data-type')], function (key, value) {
+			if (!value) {
+				$newRow.find("." + key).remove();
+			}
+		});
+
+		$item.Table.append($newRow);
+
+		$item.Table.find('.ItemRow').each(function (i) {
+			$(this).find(".Counter span").text(i + 1);
+		});
+
+		// BuildAddressMapSelectors();
+		BuildConditionalSelects();
+		BuildMatrix();
+		$newRow.find('.DisplayCondition select[id^=ddDisplayConditionCompare]').change();
+		$newRow.find('.CodeTableMulti input').change();
+		$newItem.dialog("close");
+	}
+
+	function BuildConditionalSelects() {
+		$('.ItemRow').find('.DisplayCondition select[id^=ddDisplayConditionCompare]').empty().append($(
+			'<option>&lt;Select a question&gt;</option>'));
+
+		$('.ItemRow').not('[data-type="page break"]').each(function (i) {
+
+			if ($(this).attr('data-type') == "code table" && $(this).find('.CodeTableMulti input').is(
+					':checked')) {
+				return;
+			}
+
+			var ID = $(this).find('input[id^=ItemIndex]').val();
+			var Question = $(this).find('.Question input').val();
+			var counter = $(this).find('.Counter').text().trim();
+
+			$('.ItemRow').find('.DisplayCondition select[id^=ddDisplayConditionCompare]').each(function () {
+				$(this).append($('<option></option>').text(counter + ". " + Question).val(ID));
+				$(this).filter('[data-value]').val($(this).attr('data-value'));
+			});
+		});
+	}
+
+	$(document).on('change',
+		'.DisplayCondition select[id^=ddDisplayConditionCompare], .DisplayCondition select[id^=ddDisplayConditionCodeTable]',
+		function () {
+			$(this).attr('data-value', $(this).val());
+		});
+
+	//action links
+	$(document).on('click', '.ItemActionAdd', function (e) {
+		e.preventDefault();
+		$newItem.dialog("open");
+	});
+
+	$(document).on('click', '.ItemActionDelete', function (e) {
+		e.preventDefault();
+		if (confirm("This will remove this question.  Are you sure?")) {
+			$(this).parents('.ItemRow').remove();
+			$('.ItemRow').each(function (i) {
+				$(this).find(".Counter span").text(i + 1);
+			});
+		}
+
+		// BuildAddressMapSelectors();
+		BuildConditionalSelects();
+		BuildMatrix();
+	});
+
+	//make a string safe for a css class (for filtering categories)
+	function makeSafeForCSS(name) {
+		return name.replace(/[^a-z0-9]/g, function (s) {
+			var c = s.charCodeAt(0);
+			if (c == 32) return '-';
+			if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
+			return '__' + ('000' + c.toString(16)).slice(-4);
+		});
+	}
+
+	$('#BBTabs').tabs();
+
+	function GetID() {
+		var maximum = 0;
+		$('.ItemRow').each(function () {
+			var value = parseFloat($(this).find('input[id^=ItemIndex]').val());
+			maximum = (value > maximum) ? value : maximum;
+		});
+		return maximum + 1;
+	}
+
+
+	$newItem = $("#newItem").dialog({
+		autoOpen: false,
+		height: 200,
+		width: 320,
+		modal: true,
+		buttons: {
+			"Add": function () {
+				addRow();
+			},
+			Cancel: function () {
+				$newItem.dialog("close");
+			}
+		}
+	});
+
+	$(document).on('click', '.LinkAttribute label input[type="checkbox"], .DisplayCondition label input[type="checkbox"]',
+		function () {
+			$(this).parent().next().slideToggle(150);
+		});
+	$(document).on('change', '.Question input', BuildConditionalSelects);
+	$(document).on('change', '.Question input', BuildAddressMapSelectors);
+	$(document).on('change', '.Question input', BuildMatrix);
+
+	$(document).on('click', '.Col3 label input[type="checkbox"]', function () {
+		if ($(this).is(':checked')) {
+			$(this).closest('div').addClass('open');
+		} else {
+			$(this).closest('div').removeClass('open');
+		}
+	});
+	$(document).on('change', '.CodeTableMulti input', function () {
+		if ($(this).is(':checked')) {
+			$(this).parents('.ItemRow').find('.LinkAttribute input, .QuestionRequired input').prop('checked',
+					false).trigger('change').parents('.LinkAttribute, .QuestionRequired').removeClass('open')
+				.hide();
+		} else {
+			$(this).parents('.ItemRow').find('.LinkAttribute input, .QuestionRequired input').parents(
+				'.LinkAttribute, .QuestionRequired').show();
+		}
+	});
+	$(document).on('click', '.header-cell a.all', function () {
+		var ix = $(this).parent().index();
+		$('.flexgrid section .body-row').each(function () {
+			$(this).children().eq(ix).find('input').prop('checked', true);
+		});
+	});
+	$(document).on('click', '.header-cell a.none', function () {
+		var ix = $(this).parent().index();
+		$('.flexgrid section .body-row').each(function () {
+			$(this).children().eq(ix).find('input').prop('checked', false);
+		});
+	});
+	$(document).on('change', '.flexgrid input[type="checkbox"]', function () {
+		BLACKBAUD.api.customPartEditor.settings["Matrix"] = GetMatrixResults();
+	});
+
+	function GetMatrixResults() {
+		var MatrixResults = {};
+		$('.flexgrid .header-cell[data-value]').each(function () {
+			var eventID = $(this).attr('data-value');
+			MatrixResults[eventID] = {};
+			$('.flexgrid .body-row').each(function () {
+				var V = $(this).find('input[data-id="' + eventID + '"]').is(':checked');
+				var Q = $(this).attr('data-index');
+				MatrixResults[eventID][Q] = V;
+			});
+		});
+		return MatrixResults;
+	}
+
+
+	function BuildMatrix() {
+		var $SelectedEvents = $('#ddEventCategories option:selected');
+		var $Questions = $('.ItemRow').not('[data-type="page break"]');
+		var $header = $('.flexgrid header');
+		var $body = $('.flexgrid section');
+		BLACKBAUD.api.customPartEditor.settings.Matrix = BLACKBAUD.api.customPartEditor.settings.Matrix || {};
+
+		$body.empty();
+		$header.empty().append('<div class="spacer"></div>');
+
+		$SelectedEvents.each(function () {
+			$header.append($('<div class="header-cell"></div>').text($(this).text()).attr('data-value', $(this)
+				.val()).append(
+				"<br /><a class='all' href='#' style='text-decoration: none;'>(all)</a> <a class='none' href='#' style='text-decoration: none;'>(none)</a>"
+			));
+		});
+		$Questions.each(function (i) {
+			var QuestionID = $(this).find('[id^=ItemIndex]').val();
+			var DataType = $(this).attr('data-type');
+			var $row = $('<div class="body-row"></div>').attr('data-index', QuestionID);
+			$row.append($('<div class="body-header-cell"></div>').text((i + 1) + ". " + $(this).find(
+				'.Question input').val()).append(' <span>[' + DataType + ']</span>'));
+			$SelectedEvents.each(function () {
+				var EventID = $(this).val();
+				var Disabled = false;
+				var IsChecked = false;
+				if (typeof BLACKBAUD.api.customPartEditor.settings.Matrix[EventID] !== 'undefined') {
+					if (typeof BLACKBAUD.api.customPartEditor.settings.Matrix[EventID][QuestionID] !==
+						'undefined') {
+						IsChecked = BLACKBAUD.api.customPartEditor.settings.Matrix[EventID][QuestionID];
+					}
+				}
+				if (DataType == "event category") {
+					IsChecked = true;
+					Disabled = true;
+				}
+				$row.append($('<div class="body-cell"></div>').append($('<input type="checkbox" />').prop(
+					'checked', IsChecked).prop('disabled', Disabled).attr('data-id', EventID)));
+			});
+			$body.append($row)
+		});
+	}
+
+	function BuildAddressMapSelectors() {
+		$('.AddressMap div[data-map]').each(function () {
+			var map = $(this).attr('data-map');
+			var select = $(this).find('select');
+			select.empty();
+			select.append($('<option value="unmapped">Unmapped</option>'));
+			$('.ItemRow[data-type="' + map + '"]').each(function () {
+				var text = $(this).find('.Question input').val();
+				var ID = $(this).find('input[id^=ItemIndex]').val();
+				var counter = $(this).find('.Counter').text().trim();
+				select.append($('<option value="' + ID + '">' + counter + ". " + text + '</option>'));
+			});
+
+			select.val(select.attr('data-value'));
+		});
+	}
+
+	$(document).on('change', '.AddressMap div[data-map] select', function () {
+		$(this).attr('data-value', $(this).val());
+	});
+</script>
