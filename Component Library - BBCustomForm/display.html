@@ -1,0 +1,1114 @@
+<link rel="stylesheet" href="/client/styles/jquery/smoothness/jquery-ui-1.7.1.all.css?&iuqt=1">
+<style>
+abbr {
+    border-bottom: none !important;
+    text-decoration:  none !important;
+}
+  .form-wrap .btn {
+    transition: none !important;
+}
+  .form-field-complex small {
+    display: block;
+}
+
+.text-muted {
+    color: #888;
+}
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding: 0;
+    width: auto;
+}
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+@media (min-width: 768px){
+    .col-md-1 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 8.333333%;
+        flex: 0 0 8.333333%;
+        max-width: 8.333333%;
+    }
+    .col-md-2 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+    .col-md-3 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .col-md-4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .col-md-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 41.666667%;
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+    .col-md-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .col-md-7 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 58.333333%;
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+    .col-md-8 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 66.666667%;
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .col-md-9 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .col-md-10 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 83.333333%;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+    .col-md-11 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 91.666667%;
+        flex: 0 0 91.666667%;
+        max-width: 91.666667%;
+    }
+    .col-md-12 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.form-field-complex input, .form-field-complex select {padding-right: 1rem;}
+.form-field-complex input[type="time"] {
+    font-size: 1.25rem;
+    padding: 1em;
+    height: 4.2rem;
+}
+  
+.address-results-container {
+	position: absolute;
+	left: 0;
+	right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+	background: #fff;
+}
+ul.address-results {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    border-top: 0;
+    background: #fff;
+    position: relative;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    max-height: 144px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+ul.address-results:empty {
+  display: none;
+}
+
+ul.address-results a {
+    padding: 0.5rem;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: inherit;
+}
+
+ul.address-results li.address-result.active {
+    color: #fff;
+    background: #007bff;
+}
+
+.address-search-container {
+	position: relative;
+}
+
+span.helper {
+    padding: 0.25rem 0.5rem;
+    display: block;
+    z-index: 1000;
+    background: white;
+    clear: both;
+    position: relative;
+    padding: 2px 5px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    font-size: 0.9rem;
+}
+
+span.helper a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+  span.helper a {
+    color: #007bff !important;
+}
+
+  
+
+.address_search {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAnZJREFUWIXtls9O1FAUxr9z2gVsCBNnAmvcGp+AICtTN7rRhUYTI4aJxrY0PgBDfADpLTTGBEiUB5Bdw8Lw5wkMe19ghgyyLT3HBSUhE8q0NhNN5FvdNt89/fW75/YWuNGN/ndRWWMcx400TReI6BGAOwAmAJyKyBEz72RZthEEwclIAIwxLwF8BDBZ5BGRPhH5vu9/rQLAwwyrq6sfAGwBmBSR70T02Lbtqenpadu27SlVfQJgn5kbRPQlDMNOFYBrE8jffEtEMmZuu667SUQ66FNViqJoUUTWmdkC8MLzvO1aAHEcN87Ozn7iPPbXnudtDCtmjGkD+CQifVWdKdMThUuQpukC8thd190cVggAXNf9DOCAmRvM/KrMnEKAvNthWVZ8VewFc5SI1vLxw1oAON9qsCzrsEyhSxCHACAid+sCTABAs9k8rgLQ7XZ7+bBwy5YFOAWAXq93qwpAq9VqAgAz/6oFICJHAJCm6VwVgCzLLvw/agEw8w4AENE7VS31xVRVIiI3H3+rBZBl2YaI9AHci6JosUyxKIreAJgVkeOxsbGtWgBBEJwQkQ8AIrJujGkXJaGqZIx5CyDKb+222+1SPTA02jAMO0S0nF8eENEaER12u91eq9VqZlk2l8c+OwC14vt+pzYAABhjnouIYeZGkUdEjgHsMvPTKhBDT0MA8DxvW1VnVPU9gH0R6YuIAjgBsK+qwfj4+O2lpaVnqrpyMY+IloedjqV/SKpoYNmuTcIaBUCSJHuO4xARzQMAEc07jkNJkuwNekeSwIWuSOKB7/vJZU+pHvhT+b7fudwTAGSUzytUGIZOGIb3/8rDb/TP6zcFAQ5Mq/LfbQAAAABJRU5ErkJggg==");
+	background-repeat: no-repeat;
+	background-position: 99% 50%;
+    background-size: 24px 24px;
+    padding-right: 50px;
+}
+  
+    
+  .half-right {
+    width: 49%;
+    float: right;
+}
+
+.half-left {
+    width: 49%;
+    float: left;
+}
+  .form-wrap .btn  { 
+    margin-top: 10px !important;
+  }
+  .form-control.error {
+    color: red;
+    border-color: red;
+}
+  .form-field-complex { margin-bottom: 1rem !important; }
+  .hideMatrix {
+    display: none !important;
+}
+  
+</style>
+
+<script src="/file/js/edq-validate.js" type="text/javascript"></script>
+
+
+<script>
+//templates
+var BBCustomFormPage = 1;
+var BBCustomFormPages = 1;
+var $row = $('<div class="form-field-complex custom-form col-md-12"></div>');
+var $label = $('<label></label>');
+var $option = $('<option></option>');
+var $button = $('<button type="button" class="button-primary next btn btn-lg btn-block btn-primary"></button>');
+var $help = $('<small id="passwordHelpBlock" class="form-text text-muted"></small>');
+
+var $page = $('<div class="form-page row"></div>');
+
+var $fieldtemplate = {};
+$fieldtemplate["heading"] = $('<h2></h2>');
+$fieldtemplate["yes/no"] = $('<input type="checkbox" />');
+$fieldtemplate["text"] = $('<input type="text" class="form-control" />');
+$fieldtemplate["phone"] = $('<input type="tel" class="form-control phone" />');
+$fieldtemplate["email"] = $('<input type="email" class="form-control email" />');
+$fieldtemplate["date"] = $('<input type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" />');
+$fieldtemplate["time"] = $('<input type="time" class="form-control" />');
+$fieldtemplate["code table"] = $('<select class="form-control"></select>');
+$fieldtemplate["event category"] = $('<select class="event-category form-control"></select>');
+$fieldtemplate["address"] = $('<input type="text" class="form-control" />');
+$fieldtemplate["postcode"] = $('<input type="text" class="form-control" />');
+$fieldtemplate["suburb"] = $('<input type="text" class="form-control" />');
+$fieldtemplate["state"] = $('<select class="state form-control"></select>');
+
+var hasPageBreak = false;
+
+var EDQ = {};
+
+function BBCustomForm(data){
+  if ( !$('div[id$="_divComment"]').length ) {
+    console.error("Sorry, the comments field was not enabled.  Please edit the Interaction Form and ensure that the commment is available editable.");
+    return false;
+  } else {
+    $('div[id$="_divComment"]').hide();
+  }
+  var $form = $('.message-form');
+  $form.children().not('.form-wrap').addClass("col-md-12");
+
+  $form.prepend($page.clone().append($form.find('.form-wrap').siblings()));
+
+  $('span.error:contains("required")').siblings('input,select').addClass('required');
+
+  $.each(data.settings.items,function(i,item){
+    console.log(item);
+    if ( item.type !== "page break" ){
+        if ( item.type == "heading" ) {
+          var $newRow = $row.clone()
+            .append($label.clone().attr('for','customField'+item.index).text())
+            .append($fieldtemplate[item.type].clone().attr('id','customField'+item.index).attr('name','customField'+item.index).text(item.question));
+        }
+        else if (item.type == "code table" && item.codeTableMulti == "on" )
+        {
+            var $newRow = $row.clone()
+            .append($label.clone().attr('for','customField'+item.index).text(item.question))
+            .append($('<input type="hidden" />').attr('id','customField'+item.index).attr('name','customField'+item.index));
+             $.get("/WebAPI/CodeTable/"+item.codeTableID ,function(data){
+                $.each(data,function(){
+                    $newRow.append($('<div class="form-check"><label class="form-check-label"><input type="checkbox" value="'+this.Id+'" class="form-check-input"><span>'+this.Description+'</span></label></div>'));
+                });
+            });
+        } 
+        else if ( item.type == "single line address" ) {
+          var $newRow = $row.clone().addClass('address-search-container')
+            .append($label.clone().attr('for','customField'+item.index).text(item.question))
+            .append('<input id="customField'+item.index +'" name="customField'+item.index +'" type="text" placeholder="Street address" autocomplete="new-password" class="address_search form-control"/><div class="address-results-container"><ul class="address-results"></ul>      <span class="helper" style="display: none;">Address not found?  <a>Click here</a> to enter it manually.</span>    </div>');
+              $.each(item.AddressMap,function(key,value){
+                if ( value !== "unampped" && value != "" ){
+                  $newRow.find('.address_search').attr("data-map-"+key,value);
+                }
+              });
+        }
+        else if ( item.type !== "yes\/no" ){
+          var $newRow = $row.clone()
+            .append($label.clone().attr('for','customField'+item.index).text(item.question))
+            .append($fieldtemplate[item.type].clone().attr('autocomplete',item.question).attr('id','customField'+item.index).attr('name','customField'+item.index));
+        } 
+         else {
+          var $newRow = $row.clone()
+            .append($label.clone().attr('for','customField'+item.index).text(" " +item.question)
+            .prepend($fieldtemplate[item.type].clone().attr('id','customField'+item.index).attr('name','customField'+item.index)));
+        }
+        if ( item.help != null ) {
+          if ( item.help.trim().length > 0 ){
+            $newRow.append($help.clone().text(item.help.trim()));
+          }
+        }
+        if ( item.columns != null ){
+          $newRow.removeClass('col-md-12');
+          $newRow.addClass('col-md-'+item.columns);
+        }
+        if ( item.required == "on" ) {
+          $newRow.find('input, select').addClass('required');
+          $newRow.children('label').append(' <abbr title="Field is required">*</abbr>');
+        }
+        if ( item.maxLength != null) {
+          $newRow.find('input').attr('maxlength',item.maxLength);
+        }
+        if ( item.type == "event category"){
+          $.each(data.settings.ddEventCategories,function(key,value){
+            $newRow.find('select').append($option.clone().attr('value',key).text(value));
+          });
+        }
+        if ( item.type == "code table" && item.codeTableMulti == "off"){
+          $.get("/WebAPI/CodeTable/"+item.codeTableID ,function(data){
+              if ( item.required !== "on" ){
+                  $newRow.find('select').append($option.clone());
+              }
+              $.each(data,function(){
+                  $newRow.find('select').append($option.clone().attr('value',this.Id).text(this.Description));
+              });
+          });
+        }
+        if ( item.type == "state"){
+          $.get("/WebAPI/Country/"+item.countryID+"/State" ,function(data){
+              if ( item.required !== "on" ){
+                  $newRow.find('select').append($option.clone());
+              }
+              $.each(data,function(){
+                  $newRow.find('select').attr('autocomplete',item.question).append($option.clone().attr('value',this.Id).text(this.Abbreviation));
+              });
+          });
+        }
+        if ( item.linkAttr == "on" ){
+          $('#'+$('#InteractionAdd').find('label').filter(function(){
+            return $(this).text().trim() == item.linkAttrLabel.trim();
+          }).first().attr('for')).first().closest('.form-field-complex').hide();
+
+          $(document).on('change input','#customField'+item.index,function(){
+
+            if ( item.type == "yes\/no"){
+
+              var value = $(this).is(":checked");
+              $('#'+$('#InteractionAdd').find('label').filter(function(){
+                return $(this).text().trim() == item.linkAttrLabel.trim();
+              }).first().attr('for')).attr('checked',value);
+
+            } else {
+
+              var value = $(this).val();
+              $('#'+$('#InteractionAdd').find('label').filter(function(){
+                return $(this).text().trim() == item.linkAttrLabel.trim();
+              }).first().attr('for')).val(value);
+            }
+
+
+          });
+
+        }
+
+        if ( item.conditional == "on") {
+          $newRow.addClass('hide');
+
+          var target = data.settings.items.filter(obj => { return obj.index === item.conditionalCompare });
+
+          $(document).on('change input','#customField'+target[0].index,function(){
+             if ( item.conditionalOperator == "equals" ) {
+
+              //checkbox equal to
+              if ( target[0].type == "yes\/no" )  {
+                if ( ( item.conditionalFields.checkbox == "on" ) == $(this).is(':checked') ) {
+                   $('#customField'+item.index).closest('.custom-form').removeClass('hide');
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //codetable equal to
+              else if ( target[0].type == "code table" )  {
+                if ( item.conditionalFields.codetable == $(this).val() ) {
+                   $('#customField'+item.index).closest('.custom-form').removeClass('hide');
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //codetable equal to
+              else if ( target[0].type == "event category" )  {
+                if ( item.conditionalFields.eventcategory == $(this).val() ) {
+                   $('#customField'+item.index).closest('.custom-form').removeClass('hide');
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //other field (text, phone, email etc.)
+              else {
+                if ( item.conditionalFields.textfield == $(this).val() ) {
+                  
+                  $('#customField'+item.index).closest('.custom-form').removeClass('hide');
+                }
+                else {
+
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+
+
+             }
+             if ( item.conditionalOperator == "not" ) {
+              //checkbox not equal to
+              if ( target[0].type == "yes\/no" )  {
+                if ( ( item.conditionalFields.checkbox == "on" ) != $(this).is(':checked') ) {
+                   $('#customField'+item.index).closest('.custom-form').removeClass('hide');
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //codetable not equal to
+              else if ( target[0].type == "code table" )  {
+                if ( item.conditionalFields.codetable != $(this).val() ) {
+                   $('#customField'+item.index).closest('.custom-form').show();
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //codetable not equal to
+              else if ( target[0].type == "event category" )  {
+                if ( item.conditionalFields.eventcategory != $(this).val() ) {
+                   $('#customField'+item.index).closest('.custom-form').show();
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+              //other field (text, phone, email etc.)
+              else {
+                if ( item.conditionalFields.textfield != $(this).val() ) {
+                   $('#customField'+item.index).closest('.custom-form').show();
+                }
+                else {
+                  $('#customField'+item.index).val("").removeAttr('checked').trigger('change').closest('.custom-form').addClass('hide');
+                }
+              }
+             }
+
+          });
+        }
+
+        $form.find('.form-page').last().append($newRow);
+
+    } else {
+      $page.clone().insertAfter($form.find('.form-page').last());
+      BBCustomFormPages++;
+      hasPageBreak = true;
+    }
+
+  });
+
+  //trigger required checkboxes to set attribute value by default
+  $('.custom-form select, .custom-form input[type="checkbox"]').trigger('change');
+
+  if ( !$('#btnSubmitProxy').length ) {
+    $('<button type="button" id="btnSubmitProxy" class="button-primary next btn btn-lg btn-block btn-primary half-right" onclick="BBCustomFormSubmit();" style="display: none;">'+$('#InteractionAdd .form-wrap input').attr('value')+'</button>').insertBefore('#InteractionAdd .form-wrap input')
+    $('#InteractionAdd .form-wrap input').hide();
+
+  }
+
+  if (!hasPageBreak){
+    $('#btnSubmitProxy').show();
+  }
+  if (hasPageBreak) {
+    $('<button type="button" id="btnPrev" class="btn-outline-primary prev btn btn-lg btn-block half-left" style="display: none;">'+data.settings.txtButtonPrev+'</button>').insertAfter($form.find('#btnSubmitProxy'));
+    $('<button type="button" id="btnNext" class="btn-primary next btn btn-lg btn-block">'+data.settings.txtButtonNext+'</button>').prependTo($form.find('.form-wrap'));
+    $('#btnSubmitProxy').addClass('half-right').hide();
+
+    $form.find('.form-page').hide().first().show();
+
+    $(document).on('click','#btnNext',function(){
+
+       if (jQuery.isFunction(jQuery.validator)) {
+          var valid = $('#form1').validate({ ignore: ":not(:visible)" }).form();
+
+  		  $('#form1').find('label.error:hidden').remove();
+  		  $('#form1').find('.error:hidden').removeClass('error');
+
+          if ( valid || $("#form1").find('.error:visible').length == 0 ){
+            BBCustomFormPage++;
+
+            $form.find('.form-page:visible').hide().next().show();
+            $('div[id$="_acqIntro"]').hide();
+            $('#btnPrev').show();
+            $('#btnNext').addClass('half-right');
+            if ( BBCustomFormPage == BBCustomFormPages ) {
+               $('#btnSubmitProxy').show();
+               $('#btnNext').hide();
+            } else {
+                $('#btnSubmitProxy').hide();
+            }
+
+            if ( $('.form-page:visible > div:visible').length == 0 ){
+              $('#btnNext:visible').click();
+            }
+
+          }
+
+        }
+
+    });
+
+    $(document).on('click','#btnPrev',function(){
+      BBCustomFormPage--;
+
+      $form.find('.form-page:visible').hide();
+      $('#btnNext').show();
+      $('#btnSubmitProxy').hide();
+
+      if ( BBCustomFormPage <= 1 ) {
+
+         $('#btnNext').removeClass('half-right');
+         $form.find('.form-page').first().show();
+         $('div[id$="_acqIntro"]').show();
+         $('#btnPrev').hide();
+      } else {
+          $form.find('.form-page').eq(BBCustomFormPage-1).show();
+          $('#btnPrev').show();
+      }
+
+      if ( $('.form-page:visible > div:visible').length == 0 ){
+        $('#btnPrev:visible').click();
+      }
+
+
+
+    });
+
+
+  } else {
+
+  } //END PAGEBREAKS
+
+    //MATRIX FOR EVENT CATEGORY ON LOAD
+   RunMatrix($('.event-category').val(), data.settings.Matrix);
+
+    $(document).on('change','.event-category',function(){
+         RunMatrix($(this).val(), data.settings.Matrix);
+    });
+
+    $('input.address_search').each(function(){
+      $.each(this.attributes, function(i, attrib){
+         var name = attrib.name;
+         var value = attrib.value;
+         if ( name == "data-map-address" || name == "data-map-suburb" || name == "data-map-state" || "data-map-suburb" ){
+            $('#customField'+value).parents('.custom-form').hide();
+         }
+      });
+    });
+
+    
+    $('.hasDatepicker').datepicker({
+        onClose: function()
+         {
+            $(this).valid();
+         }
+    });
+
+  
+  //QAS
+  EDQ.current = 0;
+  EDQ.length = 0;
+  EDQ.limit = data.settings.txtLimit || 25;
+  EDQ.show = data.settings.txtShow || 4;
+  EDQ.country =  "";
+  EDQ.term = "";
+  EDQ.results = "";
+  EDQ.resultscontainer = "";
+  EDQ.client = new EXP.DQ.Address.Client({token:data.settings.txtAPI});
+  EDQ.enabledCountries = data.settings.ddCountries;
+  EDQ.countries = {
+    "Aruba":"ABW",
+    "Afghanistan":"AFG",
+    "Angola":"AGO",
+    "Anguilla":"AIA",
+    "Åland Islands":"ALA",
+    "Albania":"ALB",
+    "Andorra":"AND",
+    "United Arab Emirates":"ARE",
+    "Argentina":"ARG",
+    "Armenia":"ARM",
+    "American Samoa":"ASM",
+    "Antarctica":"ATA",
+    "French Southern Territories":"ATF",
+    "Antigua and Barbuda":"ATG",
+    "Australia":"AUS",
+    "Austria":"AUT",
+    "Azerbaijan":"AZE",
+    "Burundi":"BDI",
+    "Belgium":"BEL",
+    "Benin":"BEN",
+    "Bonaire, Sint Eustatius and Saba":"BES",
+    "Burkina Faso":"BFA",
+    "Bangladesh":"BGD",
+    "Bulgaria":"BGR",
+    "Bahrain":"BHR",
+    "Bahamas":"BHS",
+    "Bosnia and Herzegovina":"BIH",
+    "Saint Barthélemy":"BLM",
+    "Belarus":"BLR",
+    "Belize":"BLZ",
+    "Bermuda":"BMU",
+    "Bolivia, Plurinational State of":"BOL",
+    "Brazil":"BRA",
+    "Barbados":"BRB",
+    "Brunei Darussalam":"BRN",
+    "Bhutan":"BTN",
+    "Bouvet Island":"BVT",
+    "Botswana":"BWA",
+    "Central African Republic":"CAF",
+    "Canada":"CAN",
+    "Cocos (Keeling) Islands":"CCK",
+    "Switzerland":"CHE",
+    "Chile":"CHL",
+    "China":"CHN",
+    "Côte d'Ivoire":"CIV",
+    "Cameroon":"CMR",
+    "Congo, the Democratic Republic of the":"COD",
+    "Congo":"COG",
+    "Cook Islands":"COK",
+    "Colombia":"COL",
+    "Comoros":"COM",
+    "Cabo Verde":"CPV",
+    "Costa Rica":"CRI",
+    "Cuba":"CUB",
+    "Curaçao":"CUW",
+    "Christmas Island":"CXR",
+    "Cayman Islands":"CYM",
+    "Cyprus":"CYP",
+    "Czechia":"CZE",
+    "Germany":"DEU",
+    "Djibouti":"DJI",
+    "Dominica":"DMA",
+    "Denmark":"DNK",
+    "Dominican Republic":"DOM",
+    "Algeria":"DZA",
+    "Ecuador":"ECU",
+    "Egypt":"EGY",
+    "Eritrea":"ERI",
+    "Western Sahara":"ESH",
+    "Spain":"ESP",
+    "Estonia":"EST",
+    "Ethiopia":"ETH",
+    "Finland":"FIN",
+    "Fiji":"FJI",
+    "Falkland Islands (Malvinas)":"FLK",
+    "France":"FRA",
+    "Faroe Islands":"FRO",
+    "Micronesia, Federated States of":"FSM",
+    "Gabon":"GAB",
+    "United Kingdom":"GBR",
+    "Georgia":"GEO",
+    "Guernsey":"GGY",
+    "Ghana":"GHA",
+    "Gibraltar":"GIB",
+    "Guinea":"GIN",
+    "Guadeloupe":"GLP",
+    "Gambia":"GMB",
+    "Guinea-Bissau":"GNB",
+    "Equatorial Guinea":"GNQ",
+    "Greece":"GRC",
+    "Grenada":"GRD",
+    "Greenland":"GRL",
+    "Guatemala":"GTM",
+    "French Guiana":"GUF",
+    "Guam":"GUM",
+    "Guyana":"GUY",
+    "Hong Kong":"HKG",
+    "Heard Island and McDonald Islands":"HMD",
+    "Honduras":"HND",
+    "Croatia":"HRV",
+    "Haiti":"HTI",
+    "Hungary":"HUN",
+    "Indonesia":"IDN",
+    "Isle of Man":"IMN",
+    "India":"IND",
+    "British Indian Ocean Territory":"IOT",
+    "Ireland":"IRL",
+    "Iran, Islamic Republic of":"IRN",
+    "Iraq":"IRQ",
+    "Iceland":"ISL",
+    "Israel":"ISR",
+    "Italy":"ITA",
+    "Jamaica":"JAM",
+    "Jersey":"JEY",
+    "Jordan":"JOR",
+    "Japan":"JPN",
+    "Kazakhstan":"KAZ",
+    "Kenya":"KEN",
+    "Kyrgyzstan":"KGZ",
+    "Cambodia":"KHM",
+    "Kiribati":"KIR",
+    "Saint Kitts and Nevis":"KNA",
+    "Korea, Republic of":"KOR",
+    "Kuwait":"KWT",
+    "Lao People's Democratic Republic":"LAO",
+    "Lebanon":"LBN",
+    "Liberia":"LBR",
+    "Libya":"LBY",
+    "Saint Lucia":"LCA",
+    "Liechtenstein":"LIE",
+    "Sri Lanka":"LKA",
+    "Lesotho":"LSO",
+    "Lithuania":"LTU",
+    "Luxembourg":"LUX",
+    "Latvia":"LVA",
+    "Macao":"MAC",
+    "Saint Martin (French part)":"MAF",
+    "Morocco":"MAR",
+    "Monaco":"MCO",
+    "Moldova, Republic of":"MDA",
+    "Madagascar":"MDG",
+    "Maldives":"MDV",
+    "Mexico":"MEX",
+    "Marshall Islands":"MHL",
+    "Macedonia, the former Yugoslav Republic of":"MKD",
+    "Mali":"MLI",
+    "Malta":"MLT",
+    "Myanmar":"MMR",
+    "Montenegro":"MNE",
+    "Mongolia":"MNG",
+    "Northern Mariana Islands":"MNP",
+    "Mozambique":"MOZ",
+    "Mauritania":"MRT",
+    "Montserrat":"MSR",
+    "Martinique":"MTQ",
+    "Mauritius":"MUS",
+    "Malawi":"MWI",
+    "Malaysia":"MYS",
+    "Mayotte":"MYT",
+    "Namibia":"NAM",
+    "New Caledonia":"NCL",
+    "Niger":"NER",
+    "Norfolk Island":"NFK",
+    "Nigeria":"NGA",
+    "Nicaragua":"NIC",
+    "Niue":"NIU",
+    "Netherlands":"NLD",
+    "Norway":"NOR",
+    "Nepal":"NPL",
+    "Nauru":"NRU",
+    "New Zealand":"NZL",
+    "Oman":"OMN",
+    "Pakistan":"PAK",
+    "Panama":"PAN",
+    "Pitcairn":"PCN",
+    "Peru":"PER",
+    "Philippines":"PHL",
+    "Palau":"PLW",
+    "Papua New Guinea":"PNG",
+    "Poland":"POL",
+    "Puerto Rico":"PRI",
+    "Korea, Democratic People's Republic of":"PRK",
+    "Portugal":"PRT",
+    "Paraguay":"PRY",
+    "Palestine, State of":"PSE",
+    "French Polynesia":"PYF",
+    "Qatar":"QAT",
+    "Réunion":"REU",
+    "Romania":"ROU",
+    "Russian Federation":"RUS",
+    "Rwanda":"RWA",
+    "Saudi Arabia":"SAU",
+    "Sudan":"SDN",
+    "Senegal":"SEN",
+    "Singapore":"SGP",
+    "South Georgia and the South Sandwich Islands":"SGS",
+    "Saint Helena, Ascension and Tristan da Cunha":"SHN",
+    "Svalbard and Jan Mayen":"SJM",
+    "Solomon Islands":"SLB",
+    "Sierra Leone":"SLE",
+    "El Salvador":"SLV",
+    "San Marino":"SMR",
+    "Somalia":"SOM",
+    "Saint Pierre and Miquelon":"SPM",
+    "Serbia":"SRB",
+    "South Sudan":"SSD",
+    "Sao Tome and Principe":"STP",
+    "Suriname":"SUR",
+    "Slovakia":"SVK",
+    "Slovenia":"SVN",
+    "Sweden":"SWE",
+    "Swaziland":"SWZ",
+    "Sint Maarten (Dutch part)":"SXM",
+    "Seychelles":"SYC",
+    "Syrian Arab Republic":"SYR",
+    "Turks and Caicos Islands":"TCA",
+    "Chad":"TCD",
+    "Togo":"TGO",
+    "Thailand":"THA",
+    "Tajikistan":"TJK",
+    "Tokelau":"TKL",
+    "Turkmenistan":"TKM",
+    "Timor-Leste":"TLS",
+    "Tonga":"TON",
+    "Trinidad and Tobago":"TTO",
+    "Tunisia":"TUN",
+    "Turkey":"TUR",
+    "Tuvalu":"TUV",
+    "Taiwan, Province of China":"TWN",
+    "Tanzania, United Republic of":"TZA",
+    "Uganda":"UGA",
+    "Ukraine":"UKR",
+    "United States Minor Outlying Islands":"UMI",
+    "Uruguay":"URY",
+    "United States of America":"USA",
+    "Uzbekistan":"UZB",
+    "Holy See (Vatican City State)":"VAT",
+    "Saint Vincent and the Grenadines":"VCT",
+    "Venezuela, Bolivarian Republic of":"VEN",
+    "Virgin Islands, British":"VGB",
+    "Virgin Islands, U.S.":"VIR",
+    "Viet Nam":"VNM",
+    "Vanuatu":"VUT",
+    "Wallis and Futuna":"WLF",
+    "Samoa":"WSM",
+    "Yemen":"YEM",
+    "South Africa":"ZAF",
+    "Zambia":"ZMB",
+    "Zimbabwe":"ZWE"
+  };
+
+  EDQ.showFields = function(hideInput){
+    hideInput = hideInput || false;
+
+    if ( hideInput) {
+      EDQ.resultscontainer.prev('input').hide();
+      EDQ.resultscontainer.prev('input').prev('label').hide();
+    } 
+
+      EDQ.resultscontainer.prev('input').each(function(){
+        $.each(this.attributes, function(i, attrib){
+           var name = attrib.name;
+           var value = attrib.value;
+           if ( name == "data-map-address" || name == "data-map-suburb" || name == "data-map-state" || name == "data-map-postcode" ){
+              $('#customField'+value).parents('.custom-form').show();
+           }
+        });
+      });
+  }
+
+  EDQ.selectResult = function(i,scroll){
+    $('.address-results li').removeClass('active');
+    $('.address-results li').eq(i).addClass('active');
+    if ( scroll ) {
+      EDQ.scrollResult();
+    }
+  }
+
+  EDQ.scrollResult = function(){
+    
+      var resultT = $('.address-results:visible').offset().top;
+      var resultH = $('.address-results:visible').height();
+      var resultS = $('.address-results:visible').scrollTop();
+
+      var activeT = $('.address-results:visible li.active').offset().top;
+      var activeH = $('.address-results:visible li.active').height();
+
+      if ( activeT < resultT ) {
+        var dif = resultT - activeT - activeH;
+        $('.address-results:visible').scrollTop(dif);
+      }
+      else if ( ( (activeT+resultS) + activeH ) > ( resultT + resultH )  ) {
+        var dif = resultS + activeT + activeH - resultH - resultT;
+        $('.address-results:visible').scrollTop(dif);
+      } 
+  }
+
+  $(document).on('focus input','.address-search-container input',function(){
+    var value = $(this).val();
+    var length = value.length;
+    EDQ.resultscontainer = $(this).parents('.address-search-container').find('.address-results-container');
+    EDQ.results = EDQ.resultscontainer.find('.address-results');
+    EDQ.country = EDQ.enabledCountries[0]; //$('select[id$="_dd_Country"]').val();
+    EDQ.term = value;
+
+    var field = $(this);
+    var address = $(this).attr('data-map-address');
+    var suburb = $(this).attr('data-map-suburb');
+    var state = $(this).attr('data-map-state');
+    var postcode = $(this).attr('data-map-postcode');
+
+
+
+    if ( length >= 4 ) {
+      EDQ.client.search(value, EDQ.countries[EDQ.country]).done(function(results){ 
+        EDQ.results.empty();
+        EDQ.resultscontainer.find('.helper').show();
+        $.each(results.picklist.slice(0,EDQ.limit),function(i,v){
+          var active = ( i == 0 ) ? "active" : "";
+          EDQ.resultscontainer.show();
+          EDQ.resultscontainer.find('.helper').show();
+          EDQ.results.append($('<li class="address-result '+active+'" id="address-result-'+i+'"><a data-moniker="'+v.moniker+'" >'+v.picklist+'</a></li>'));
+        });
+        EDQ.length = (results.picklist.length >= EDQ.limit) ? EDQ.limit : results.picklist.length;
+        EDQ.results.css('max-height',function(){
+          return EDQ.show * EDQ.results.find('li').first().height() + 'px';
+        });
+
+        $('a[data-moniker]').off('click').on('click',function(){
+          EDQ.term = $(this).text();
+          EDQ.client.format($(this).attr('data-moniker'),EDQ.countries[EDQ.country],'IntuitiveDefault').done(function(result){
+            $('#customField'+address).val(function(){
+                var value = result.address.addressLine1;
+                if ( result.address.addressLine2.length ) { value += ", " + result.address.addressLine2 };
+                if ( result.address.addressLine3.length ) { value += ", " + result.address.addressLine3 };
+                return value;
+              }).trigger('change');
+
+            $('#customField'+suburb).val(result.address.locality).trigger('change');
+            $('#customField'+postcode).val(result.address.postalCode).trigger('change');
+            $('#customField'+state+' option:contains("'+result.address.province+'")').prop('selected',true).trigger('change');
+            field.val(EDQ.term);
+            //EDQ.showFields(false);
+          });
+        });
+      });
+    }
+  });
+
+  $(document).on('hover','.address-search-container .address-results .address-result',function(){
+    EDQ.current = $(this).attr('id').split("-")[2];
+    EDQ.selectResult(EDQ.current,false);
+  });
+  $(document).on('keydown','.address-search-container input',function(e){
+    switch ( e.keyCode ) {
+        case 38: //up
+            if ( EDQ.current > 0 ) {
+              EDQ.current--;
+              EDQ.selectResult(EDQ.current,true);
+            }
+            break;
+        case 40: //down
+            if ( EDQ.current < (EDQ.length-1) ) {
+              EDQ.current++;
+              EDQ.selectResult(EDQ.current,true);
+            }
+            break;
+        case 13: //enter
+          $(this).parents('.address-search-container').find('.address-results .address-result.active a').click();
+          e.preventDefault();
+          return false;
+          break;
+        case 9: //tab
+          $(this).parents('.address-search-container').find('.address-results .address-result.active a').click();
+          break;
+        default: //other
+          return true;
+    }
+
+  });
+
+
+
+  $("body").click(function(e){
+      if( !$(e.target).is('.address-search-container') && EDQ.results.length && !$(e.target).is('.address_search') ) {
+        EDQ.resultscontainer.find('.helper').hide();
+        EDQ.results.empty();
+      }
+  });
+
+  $(document).on('click','span.helper a',function(){
+    EDQ.resultscontainer = $(this).parents('.address-results-container');
+    if ( !EDQ.resultscontainer.prev('input[data-map-address]').length ) {
+      EDQ.resultscontainer.prev('input[data-map-address]').removeClass('address_search').removeAttr('data-map-address, data-map-suburb, data-map-state, data-map-postcode').show();
+      EDQ.resultscontainer.remove();
+    } else {
+      EDQ.showFields(true);  
+    }
+  });
+
+  Sys.Application.add_load(function(){
+    EDQ.country = EDQ.enabledCountries[0]; //$('select[id$="_dd_Country"]').val();
+
+    if ( jQuery.inArray(EDQ.country,EDQ.enabledCountries) < 0 ) {
+      // already has an address in the field
+      EDQ.showFields(true);
+    } else {
+      EDQ.results = $('.address-search-container:not(.template) .address-results');
+      EDQ.resultscontainer = $('.address-search-container:not(.template) .address-results-container');
+      EDQ.resultscontainer.find('.helper').hide();
+    }
+  });
+
+  $(document).on('change input blur','#InteractionAdd input, #InteractionAdd select',function(){
+    $(this).valid();
+  });
+
+}
+Sys.Application.add_load(function(){ $('#btnSubmitProxy').attr('onclick','BBCustomFormSubmit();'); });
+
+
+
+// add custom validator for phone numbers
+$.validator.addMethod("phone", function(phone_number, element) {
+    var digits = "0123456789";
+    var phoneNumberDelimiters = "()- ext.";
+    var validWorldPhoneChars = phoneNumberDelimiters + "+";
+    var minDigitsInIPhoneNumber = 10;
+    s = stripCharsInBag(phone_number, validWorldPhoneChars);
+    return this.optional(element) || isInteger(s) && s.length >= minDigitsInIPhoneNumber;
+}, "Please enter a valid phone number.");
+
+function isInteger(s) {
+    var i;
+    for (i = 0; i < s.length; i++) {
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    } // All characters are numbers.
+    return true;
+}
+
+function stripCharsInBag(s, bag) {
+    var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++) {
+        // Check that current character isn't whitespace.
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+function BBCustomFormSubmit(){
+
+ if (jQuery.isFunction(jQuery.validator)) {
+    var valid = $('#form1').validate({ ignore: ":not(:visible)" }).form();
+
+    if ( valid || $("#form1").validate().errorList.length == 0 ){
+       var text = "";
+        $('.custom-form').not('.hide, .hideMatrix').each(function(){
+           var label = $(this).children('label').not('.error').text().trim();
+           var heading = $(this).find('h2').text().trim();
+           if ( !heading.length ) { 
+                var value = "";
+                   if ( $(this).find('.form-check').length > 0 ){
+                      var list = "";
+                      $(this).find('.form-check').each(function(){
+                        
+                        if ( $(this).find('input[type="checkbox"]').is(':checked') ){
+                          list += $(this).find('label span').text() + ", ";
+                        }
+                      });
+                      value = list.substring(0,list.length - 2);
+                   }
+                   else if ( $(this).find('input[type="checkbox"]').length ){
+                      value = $(this).find('input[type="checkbox"]').is(':checked') ? "Yes" : "No";
+                   } else if ( $(this).find('select').length ) {
+                      value = $(this).find('select option:selected').text();
+                   } else if ( $(this).find('input').length ) {
+                      value = $(this).find('input').val();
+                   }
+                   if ( value.length ) {
+                       text += label + "\n";
+                       text += value + "\n\n";
+                   }
+           } else {
+              text += "==="+ heading +"==="+ "\n\n"
+           }
+           
+        });
+        $('div[id$="_divComment"] textarea').val(text);
+
+        IAFSubmit();
+    }
+  }
+
+}
+
+function RunMatrix(EventCategoryID,Data){
+   $.each( Data[EventCategoryID], function(key,value){
+      if ( !value ) {
+        $('#customField' + key).parents('.custom-form').addClass('hideMatrix');
+      } else {
+        $('#customField' + key).parents('.custom-form').removeClass('hideMatrix');
+      }
+   });
+}
+
+$(document).on('blur','#InteractionAdd input[type=date], #InteractionAdd input[type=time]',function(){
+  $(this).valid();
+});
+
+  //TEMP NEED TO REMOVE LATER
+      function IAFSubmit() {
+      $('#InteractionAdd .form-wrap input').click();
+    }
+</script>
