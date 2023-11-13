@@ -1,0 +1,2678 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://foundation.uc.edu/file/redesign/css/tinymce_styles.css" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/client/styles/Admin/GenericUI.css" type="text/css" />
+
+<link rel="stylesheet" href="https://foundation.uc.edu/file/custom-content-parts/css/bb-custom-form_editor.css" type="text/css" />
+<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+
+<link rel="stylesheet" href="/Client/Scripts/tiny_mce_V4_9_6/skins/lightgray/skin.min.css" type="text/css" />
+<link rel="stylesheet" href="https://foundation.uc.edu/Client/Scripts/tiny_mce_V4_9_6/plugins/compat3x/css/dialog.css" type="text/css" />
+
+<style>
+    .ui-state-highlight {
+    /*height: 200px;*/
+    }
+    
+    .ui-datepicker td {
+        border: 0;
+        padding: 1px !important;
+    }
+    
+    .tip {
+        border: 2px solid #0dcaf0 !important;
+        margin-bottom: 0.5em;
+        padding: 10px;
+    }
+    
+    .ui-widget-header {
+        border: 1px solid #ddd;
+        background: #e9e9e9 !important;
+        color: #333 !important;
+        font-weight: bold;
+    }
+    
+    div[id$="-body"] .mce-widget.mce-btn.mce-first.mce-last button {
+        padding: 1px 5px !important;
+        font-size: 12px !important;
+    }
+    
+    .mce-widget.mce-btn.mce-splitbtn button {
+        padding: 1px 6px !important;
+        display: inline;
+    }
+    
+    .mce-grid.mce-grid-border.mce-colorbutton-grid .mce-grid-cell {
+        padding: 0;
+    }
+    
+    table:not([cellpadding]) th,
+    table:not([cellpadding]) td {
+        padding: 0.1rem;
+    }
+  
+  	.FormattedText > div.mce-tinymce.mce-container.mce-panel {
+   		padding: 5px 0;
+  	}
+  
+  
+  	#newItem {
+    	display: block;
+  	}
+  
+  	#newItem .flex {
+    	display: flex;
+    	flex-wrap: wrap;
+    	justify-content: space-between;
+    	width: 100%;
+    	margin-bottom: 1em;
+  	}
+  
+  	#newItem .flex > div {
+    	width: 24%;
+    	margin-bottom: 0.5em;
+    	border: 1px solid #ccc;
+    	cursor: pointer;
+    	display: flex;
+    	align-items: center;
+    	position: relative;
+    	padding-bottom: 1.75em;
+  	}
+  
+  	#newItem .flex.one-third > div {
+    	width: 30%;
+  	}
+  
+  	#newItem .flex > div label {
+    	line-height: 3;
+    	font-size: 1.5em;
+    	display: block;
+    	position: relative;
+  	}
+  
+  	#newItem .flex > div input {
+    	margin-top: 0;
+  	}
+  
+  	#newItem .flex > div a {
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	text-align: center;
+    	background: #ccc;
+    	font-size: 1.25em;
+  	}
+  
+  	#newItem input[type="radio"]:checked+label { 
+    	font-weight: bold; 
+  	}
+  
+  	#newItem .modal {
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    	bottom: 0;
+    	right: 0;
+    	margin: auto;
+    	width: 90%;
+    	height: 90%;
+    	background: white;
+    	z-index: 100;
+    	display: none;
+    	align-items: center;
+    	justify-content: center;
+    	box-shadow: 0 1px 1px hsl(0deg 0% 0% / 8%), 0 2px 2px hsl(0deg 0% 0% / 8%), 0 4px 4px hsl(0deg 0% 0% / 8%), 0 8px 8px hsl(0deg 0% 0% / 8%), 0 16px 16px hsl(0deg 0% 0% / 8%);
+	}
+  
+  	#newItem .modal span {
+    	position: absolute;
+    	top: .85em;
+    	right: 1em;
+    	border: 1px solid black;
+    	cursor: pointer;
+  	}
+  
+  	#newItem .modal img {
+    	max-width: 100%; 
+  	}
+  
+  	#newItem .modal label {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	padding: 0.25em 0;
+    	background: #E8E8E8;
+    	text-align: center;
+  	}
+  
+</style>
+<div id="BBTabs">
+
+    <ul>
+        <li><a href="#tab-1">Content</a></li>
+    </ul>
+
+    <!-- FIELDS -->
+    <div id="tab-1" class="StepGrouping">
+        <h1 class="StepGroupingHeading">
+            Content
+        </h1>
+        <div class="StepGroupingBody">
+
+            <div class="HelpText">
+                Add, update, remove, and re-order your content.
+            </div>
+
+
+            <div class="VerticalOption">
+                <div class="ItemContainer">
+
+                    <div class="ItemTable" cellspacing="0" cellpadding="0">
+                        <div class="ItemRow" id="ItemRowTemplate">
+                            <input type="hidden" id="ItemIndex_0" name="ItemIndex_0" />
+
+                            <div class="Center">
+
+                                <div class="ItemHeader">
+
+                                    <div class="Counter">
+                                        <span>0</span>
+                                    </div>
+                                    <div class="FieldType">
+                                    </div>
+
+                                    <div class="ItemActions" id="DivItemActions_0">
+                                        <a class="ItemActionMove">
+                                            <i class="fa fa-arrows-v"></i>
+                                        </a>
+                                        <a class="ItemActionDelete">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="top">
+                                  	<!-- Text Field options -->
+                                    <div class="Question" id="DivQuestion_0">
+                                        <div class="tip"><em>Tip: Text displays based on font assignment.</em></div>
+                                        <label>Content: <input class="form-control required" type="text"
+												name="Question_0" id="Question_0" /></label>
+                                    </div>                                  
+                                  	<div class="Blockquote" id="DivBlockquote_0">
+                                        <div class="tip"><em>Tip: Quote text wrapped inside quotations so no
+												need to wrap.
+												Dash in front of source is automatically added.</em></div>
+
+                                        <label>Quote Source: <input class="form-control quoteSource"
+												type="text"
+												name="QuoteSource_0" id="QuoteSource_0" /></label>
+                                    </div>                                  
+                                  	<div class="Byline" id="DivByline_0">
+                                        <div class="tip"><em>Tip: Byline allows you to display author
+												information.</em></div>
+
+                                        <label>Author Name: <input class="form-control required authorName"
+												type="text"
+												name="AuthorName_0" id="AuthorName_0" /></label>
+                                        <label>Author Email: <input class="form-control authorEmail"
+												type="text"
+												name="AuthorEmail_0" id="AuthorEmail_0" /></label>
+                                        <label>Date Published: <input class="form-control datePublished"
+												type="text"
+												name="DatePublished_0" id="DatePublished_0" /></label>
+                                        <hr>                                      
+                                    </div>                                  
+                                  	<div class="Formattedtext" id="DivFormattedtext_0">
+                                        <div class="tip"><em>Tip: Formatted Text allows you to add formatted
+												text similar to how the 'Formatted Text and Image' BBIS part works.
+												You can insert links and images the same way as the BBIS part.</em></div>
+                                    </div>                                  
+                                  	<div class="SectionHeading" id="DivSectionHeading_0">
+                                        <div class="tip"><em>Tip: Centered Heading 2 text inside black full
+												with background.</em></div>
+
+                                        <label>Content: <input class="form-control required" type="text"
+												name="SectionHeading_0" id="SectionHeading_0" /></label>
+                                    </div>
+                                  
+                                  	<!-- END: Text Field options -->
+                                    
+                                  	<!-- Web Component options -->
+                                  	<div class="Accordion" id="DivAccordion_0">
+                                        <div class="tip"><em>Tip: Accordion allows you to enter the text that
+												is initially seen by the user (Accordion Text) and the content
+												(Accordion Content) that is seen when it opens.</em></div>
+
+                                        <label>Accordion Text: <input class="form-control required
+												accordionText" type="text"
+												name="AccordionText_0" id="AccordionText_0" /></label>
+                                    </div>
+                                  
+                                    <div class="ButtonLink" id="DivButtonLink_0">
+                                        <div class="tip"><em>Tip: Button Link allows you to enter button text
+												and assign destination link.</em></div>
+
+                                        <label>Button Link Text: <input class="form-control required
+												linkText"
+												type="text"
+												name="linkText_0" id="linkText_0" /></label>
+                                        <hr>
+                                    </div>
+                                  
+                                    <div class="Card" id="DivCardTitle_0">
+                                        <div class="tip"><em>Tip: Card displays stacked in the following
+												order: Image, Heading, Plain Text, Link.</em></div>
+
+                                        <label>Card Title: <input class="form-control required cardTitle"
+												type="text"
+												name="CardTitle_0" id="CardTitle_0" /></label>
+                                        <label>Card Text: <input class="form-control required cardText"
+												type="text"
+												name="CardText_0" id="CardText_0" /></label>
+                                        <label>Card Link Text: <input class="form-control required
+												cardLinkText"
+												type="text"
+												name="cardLinkText_0" id="cardLinkText_0" /></label>
+                                        <hr>
+                                    </div>    
+                                  
+                                  	<div class="FiftyFiftyGrid" id="DivFiftyFiftyGrid_0">
+                                      	<div class="tip"><em>Tip: 50/50 Grid component</em></div>
+
+                                        <label for="ImageAlign_0">Which side of page for Image?
+											<select id="ImageAlign_0" class="imageAlign">
+												<option value="left">Left</option>
+												<option value="right">Right</option>
+											</select></label>
+                                        <hr>
+                                    </div>  
+                                  
+                                    <div class="HR" id="DivHr_0">
+                                        <div class="tip"><em>Tip: Skewed HR is cut off on left/right sides for
+												column
+												width greater than 11.</em></div>
+                                    </div>
+                                  
+                                  	<div class="IconTextCard" id="DivIconTextCard_0">
+                                        <div class="tip"><em>Tip: Icon Text Card displays with the Image
+												displayed to the left and to the right is the Text.</em></div>
+                                    </div>
+                                  
+                                  	<div class="ImageTextCard" id="DivImageTextCard_0">
+                                        <div class="tip"><em>Tip: Image Text Card displays with the Image displayed
+												to the left and stacked to the right is the Title and Text.</em></div>
+                                        <label>Card Title: <input class="form-control required cardTitle"
+												type="text"
+												name="CardTitle_0" id="CardTitle_0" /></label>
+                                        <label>Card Text: <input class="form-control required cardText"
+												type="text"
+												name="CardText_0" id="CardText_0" /></label>
+                                        <hr>
+                                    </div>
+                                  
+                                    <div class="Image" id="DivImage_0">
+                                        <div class="tip"><em>Tip: Image allows you to set the alignment as
+												well as the width. Set 'Full Width of Page?' to 'Yes' to make image
+												stretch across width of browser window.</em></div>
+
+                                        <label for="ImageAlign_0">Image Alignment:
+											<select id="ImageAlign_0" class="imageAlign">
+												<option value="left">Left</option>
+												<option value="center">Center</option>
+												<option value="right">Right</option>
+											</select></label>
+                                        <label>Image Caption (centered under image): <input
+												class="form-control required
+												imageCaption"
+												type="text" name="ImageCaption_0" id="ImageCaption_0" /></label>
+                                        <hr>
+                                    </div>
+                                    <div class="RelatedStory" id="DivRelatedStory_0">
+                                        <div class="tip"><em>Tip: Related Story displays stacked in the
+												following order: Image, Title, Link.</em></div>
+
+                                        <label>Title: <input class="form-control required relatedStoryTitle"
+												type="text"
+												name="RelatedStoryTitle_0" id="RelatedStoryTitle_0" /></label>
+                                        <label>Link Text: <input class="form-control required
+												relatedStoryLinkText"
+												type="text"
+												name="relatedStoryLinkText_0" id="relatedStoryLinkText_0" /></label>
+                                        <hr>
+                                    </div>
+                                    <div class="RowCard" id="DivRowCard_0">
+                                        <div class="tip"><em>Tip: Row Card displays with the Image displayed
+												to the left and stacked to the right is the Title, Text and Link.</em></div>
+                                        <label>Card Title: <input class="form-control required cardTitle"
+												type="text"
+												name="CardTitle_0" id="CardTitle_0" /></label>
+                                        <label>Card Text: <input class="form-control required cardText"
+												type="text"
+												name="CardText_0" id="CardText_0" /></label>
+                                        <label>Card Link Text: <input class="form-control required
+												cardLinkText"
+												type="text"
+												name="cardLinkText_0" id="cardLinkText_0" /></label>
+                                        <hr>
+                                    </div>
+                                    <div class="PageTitle" id="DivPageTitle_0">
+                                        <div class="tip"><em>Tip: Page Title is used at the very top of the
+												page under the navigation. There only needs to be one Page Title per
+												page.</em></div>
+
+                                        <label>Page Title: <input class="form-control required pageTitle"
+												type="text"
+												name="PageTitle_0" id="PageTitle_0" /></label>
+                                    </div>
+                                    <div class="Video" id="DivVideo_0">
+                                      	<div class="tip">
+                                        	<em>Tip: Copy YouTube URL into text field. Video can be in following formats: 
+                                        	<ul>
+                                              	<li>Standard YouTube URL: http://www.youtube.com/watch?v=YouTubeID</li>
+                                              	<li>Shortened URL: http://youtu.be/YouTubeID</li>
+                                              	<li>Standard with multiple paramters: https://www.youtube.com/watch?v=YouTubeID&ab_channel=YouTubeChannel</li>
+                                        	</ul>
+                                          <br>Leave Link Text field blank to show video embedded on web page. Link text will
+												appear as link button that opens video in modal.</em>
+                                      	</div>
+                                        <label>YouTube URL: <input class="form-control required videoUrl"
+												type="text"
+												name="Video_0" id="Video_0" /></label>
+
+                                        <label>Link Text: <input class="form-control required
+												linkText" type="text" name="linkText_0" id="linkText_0" /></label>
+                                    </div>
+									<!-- END: Web Component options -->
+                                  
+									<!-- Call-Out box options -->
+                                  	<div class="CalloutBox" id="DivCalloutBox_0">
+                                        <div class="tip"><em>Tip: Text displays at a max-width of 1024 pixels
+												and has a
+												gray background.</em></div>
+                                    </div>
+                                    <div class="NextFrontiers" id="DivNextFrontiers_0">
+                                        <div class="tip"><em>Tip: Text below is formatted and displayed in
+												Call-out Box.</em></div>
+                                        <label>As the thriving research nexus of our region, the University of
+											Cincinnati is solving problems with unrivaled talent who push the
+											boundaries of discovery and innovation for the greater good. Your
+											investment in Next, Now: The Campaign for Cincinnati can launch UC
+											research and innovation to the next frontiers that await us.</label>
+                                    </div>
+                                    <div class="NextNow" id="DivNextNow_0">
+                                        <div class="tip"><em>Tip: Text below is formatted and displayed in
+												Call-out Box.</em></div>
+                                        <label>With its focus on innovation and impact, Next, Now: The
+											Campaign for Cincinnati is where ambition meets action. At the
+											University of Cincinnati and UC Health, we’re driven by next;
+											thinking bolder and dreaming bigger to create the tomorrow we
+											envision, today.<br>What’s NEXT, starts with you.</label>
+                                    </div>
+                                    <div class="EmpowerNext" id="DivEmpowerNext_0">
+                                        <div class="tip"><em>Tip: Text below is formatted and displayed in
+												Call-out Box.</em></div>
+                                        <label>Scholarships, fellowships and enrichment programs provide
+											opportunities for students to attend, grow and graduate from UC. You
+											can empower our next leaders through support for scholarships and
+											signature programs in career-based education, co-op or professional
+											development.</label>
+                                    </div>
+                                  	<!-- END: Call-Out box options -->
+	
+                                  	<!-- Sub-Footer -->
+                                    <div class="SubFooter" id="DivSubFooter_0">
+                                        <div class="tip"><em>Tip: Sub Footer gives you the option to select a
+												background image, Heading, Sub-Heading, Link Text and Link.</em></div>
+                                        <label>Heading: <input class="form-control required subFooterHeading"
+												type="text"
+												name="SubFooterHeading_0" id="SubFooterHeading_0" /></label>
+                                        <label>Sub-Heading: <input class="form-control subFooterSubHeading"
+												type="text"
+												name="SubFooterSubHeading_0" id="SubFooterSubHeading_0" /></label>
+                                        <label>Call-Out Link Text: <input class="form-control required
+												subfooterLinkText"
+												type="text"
+												name="SubfooterLinkText_0" id="SubfooterLinkText_0" /></label>
+                                        <hr>
+                                    </div>
+									<!-- END: Sub-Footer -->
+                                  
+                                    <div class="Footer" id="DivFooter_0">
+                                        <div class="tip"><em>Tip: .</em></div>
+                                        <div class="Field">
+                                            <div class="FieldHeading">
+                                                <label for="field-highlighter-image" class="FieldLabel">Background
+													Image:</label>
+                                                <span class="FieldRequired">*</span>
+                                                <span class="clear"></span>
+                                            </div>
+                                            <div class="FieldContent">
+                                                <div class="SearchFieldContainer">
+                                                    <div class="SearchFieldBox">
+                                                        <a href="#" class="SearchField ImagePicker" id="ImagePicker_0">
+                                                            <span class="SearchFieldIcon">
+																<img src="/images/pencil_16.gif" alt="" />
+															</span>
+                                                            <span class="SearchFieldText"></span>
+                                                            <span class="SearchFieldButton">
+																<img src="/images/Admin/Buttons/search.gif" alt="" />
+															</span>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Field ImagePickerRender" name="ImagePickerRender_0" id="ImagePickerRender_0">
+                                            <img src="">
+                                        </div>
+
+                                        <hr>
+                                        <h3>First Column</h3>
+                                        <label>Heading: <input class="form-control required
+												footerColOneHeading" type="text"
+												name="FooterColOneHeading_0" id="FooterColOneHeading_0" /></label>
+                                        <hr>
+                                        <h3>Second Column</h3>
+                                        <label>Heading: <input class="form-control required
+												footerColTwoHeading" type="text"
+												name="FooterColTwoHeading_0" id="FooterColTwoHeading_0" /></label>
+                                        <hr>
+                                        <h3>Third Column</h3>
+                                        <label>Heading: <input class="form-control required
+												footerColThreeHeading" type="text"
+												name="FooterColThreeHeading_0" id="FooterColThreeHeading_0" /></label>
+                                    </div>
+
+
+                                    <div class="MaxLength" id="DivMaxLength_0">
+                                        <label>Max length: <input class="form-control" type="number" step="1"
+												value="255" name="MaxLength_0" id="MaxLength_0" /></label>
+                                        <span class="helper">Limited to 255</span>
+                                    </div>
+
+                                </div>
+                              
+                              	<div class="SelectLink" id="DivSelectLink_0">
+                              		<div class="Field">
+                                        <p>
+                                            <label>Selected Link Name:</label>
+                                        	<span class="selected-link-name"></span>
+                                        </p>
+                                      	<p>
+                                            <label>Selected Link URL:</label>
+                                        	<span class="selected-link-url"></span>
+                                        </p>
+                                      	<p>
+                                        	<button class="btn-select" name="btn-select_0" id="btn-select_0">Select
+													Link</button>
+                                    	</p>
+                              		</div>
+                          		</div>
+												
+                                <div class="FormattedText" id="DivFormattedText_0">
+                                    <label>Formatted Text: </label>
+                                    <textarea class="required tinymce" id="FormattedText_0" name="FormattedText_0" cols="80"></textarea>
+                                </div>
+
+                                <div class="ImageField"  id="DivImageField_0">
+                                    <div class="Field">
+                                        <div class="FieldHeading">
+                                            <label for="field-highlighter-image" class="FieldLabel">Image:</label>
+                                            <span class="FieldRequired">*</span>
+                                            <span class="clear"></span>
+                                        </div>
+                                        <div class="FieldContent">
+                                            <div class="SearchFieldContainer">
+                                                <div class="SearchFieldBox">
+                                                    <a href="#" class="SearchField ImagePicker" id="ImagePicker_0">
+                                                        <span class="SearchFieldIcon">
+															<img src="/images/pencil_16.gif" alt="" />
+														</span>
+                                                        <span class="SearchFieldText"></span>
+                                                        <span class="SearchFieldButton">
+															<img src="/images/Admin/Buttons/search.gif" alt="" />
+														</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Field ImagePickerRender" name="ImagePickerRender_0" id="ImagePickerRender_0">
+                                        <img src="">
+                                    </div>
+                                </div>
+
+                                <div class="middle">
+                                    <div class="Help" id="DivHelp_0">
+                                        <label>Help Text: <input class="form-control" type="text"
+												name="Help_0"
+												id="Help_0" /></label>
+                                    </div>
+                                    <div class="ColumnWidth" id="DivColumnWidth_0">
+                                        <label>Columns(/12): <select class="form-control" name="ColumnWidth_0"
+												id="ColumnWidth_0">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+												<option>11</option>
+												<option selected="selected">12</option>
+											</select>
+										</label>
+                                    </div>
+                                    <div class="FullPageWidth" id="DivFullPageWidth_0">
+                                        <label>Full Width of Page? <select class="form-control"
+												name="FullPageWidth_0"
+												id="FullPageWidth_0">
+												<option>No</option>
+												<option>Yes</option>
+											</select>
+										</label>
+                                    </div>
+                                </div>
+
+                                <div class="Col3">
+                                    <div class="QuestionRequired" id="DivQuestionRequired_0">
+                                        <label><input class="form-control" type="checkbox"
+												name="QuestionRequired_0" id="QuestionRequired_0" /> Mark as
+											required</label>
+                                    </div>
+
+                                    <div class="LinkAttribute" id="DivLinkAttribute_0">
+                                        <label><input class="form-control" type="checkbox"
+												name="LinkAttribute_0" id="LinkAttribute_0" /> Link to attribute</label>
+                                        <div class="LinkAttributeExpand" style="display: none;">
+                                            <label>Attribute label: <input class="form-control required"
+													type="text" name="Attribute_0" id="Attribute_0" /></label><br />
+                                            <span class="helper">Must match exactly what has been set up on the
+												Interaction Add form</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="DisplayCondition" id="DivDisplayCondition_0">
+                                        <label><input class="form-control" type="checkbox"
+												name="DisplayCondition_0" id="DisplayCondition_0" /> Display
+											conditionally</label>
+                                        <div class="DisplayconditionExpand" style="display: none;">
+                                            <span>Where</span>
+                                            <select name="ddDisplayConditionCompare_0" id="ddDisplayConditionCompare_0">
+												<option>&lt;Select a question&gt;</option>
+												<option>This will be populated</option>
+												<option>With a list of questions</option>
+											</select>
+                                            <span>is</span>
+                                            <select name="ddDisplayConditionIs_0" id="ddDisplayConditionIs_0">
+												<option value="equals">Equal To</option>
+												<option value="not">Not Equal To</option>
+											</select>
+                                            <div class="FieldCompare">
+                                                <input class="required" type="text" name="ddDisplayConditionValText_0" id="ddDisplayConditionValText_0" />
+                                                <input type="checkbox" name="ddDisplayConditionIsCheckbox_0" id="ddDisplayConditionIsCheckbox_0" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <a class="ItemActionAdd" class="BBAdminButtonLnk" href="#">
+                    <span class="BBAdminButtonContent">
+						<span ass="BBAdminButtonLabel">
+							<i class="fa fa-plus-circle"></i> Add Content
+						</span>
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="newItem" title="Add a new Web Component" style="width: 100% !important; display: block !important;">
+  	<div class="modal">
+      	<label>Preview Component</label>
+      	<span class="ui-button-icon ui-icon ui-icon-closethick"></span>
+    	<img src="https://foundation.uc.edu/image/config/ScreenShot-heading2.png">      
+  	</div>
+  	<label>Select Component Type:</label>
+  	<fieldset class="flex">
+      	<legend>Text Field</legend>
+        <div><input id="itemBlockquote" name="bbis" value="blockquote" type="radio"><label for="itemBlockquote">Blockquote</label> <a href="blockquote">Preview</a></div>
+        <div><input id="itemFormattedText" name="bbis" value="formattedtext" type="radio"><label for="itemFormattedText">Formatted Text</label> <a href="formattedtext">Preview</a></div>
+        <div><input id="itemText" name="bbis" value="text" type="radio"><label for="itemText">Text</label> <a href="text">Preview</a></div>
+        <div><input id="itemByline" name="bbis" value="byline" type="radio"><label for="itemByline">Byline</label> <a href="byline">Preview</a></div>
+    </fieldset>
+  
+  	<fieldset class="flex">
+      	<legend>Headings</legend>
+        <div><input id="itemHeading2" name="bbis" value="heading2" type="radio"><label for="itemHeading2">Heading 2</label> <a href="heading2">Preview</a></div>
+        <div><input id="itemHeading3" name="bbis" value="heading3" type="radio"><label for="itemHeading3">Heading 3</label> <a href="heading3">Preview</a></div>
+        <div><input id="itemSubheading" name="bbis" value="subheading" type="radio"><label for="itemSubheading">Sub-Heading</label> <a href="subheading">Preview</a></div>
+        <div><input id="itemSectionheading" name="bbis" value="sectionheading" type="radio"><label for="itemSectionheading">Section Heading</label> <a href="sectionheading">Preview</a></div>
+    </fieldset>
+  
+  	<fieldset class="flex">
+      	<legend>Components</legend>
+        <div><input id="itemFiftyfifty" name="bbis" value="fiftyfifty" type="radio"><label for="itemFiftyfifty">50/50 Image/Text Grid</label> <a href="fiftyfifty">Preview</a></div>
+        <div><input id="itemAccordion" name="bbis" value="accordion" type="radio"><label for="itemAccordion">Accordion</label> <a href="accordion">Preview</a></div>
+        <div><input id="itemButtonlink" name="bbis" value="buttonlink" type="radio"><label for="itemButtonlink">Button Link</label> <a href="buttonlink">Preview</a></div>
+        <div><input id="itemCalloutbox" name="bbis" value="calloutbox" type="radio"><label for="itemCalloutbox">Call-Out Box</label> <a href="calloutbox">Preview</a></div>
+      	<div><input id="itemCard" name="bbis" value="card" type="radio"><label for="itemCard">Grid Card</label> <a href="card">Preview</a></div>
+        <div><input id="itemHr" name="bbis" value="hr" type="radio"><label for="itemHr">Horizontal Rule</label> <a href="hr">Preview</a></div>
+        <div><input id="itemIcontextcard" name="bbis" value="icontextcard" type="radio"><label for="itemIcontextcard">Icon Text Card</label> <a href="icontextcard">Preview</a></div>
+        <div><input id="itemImagetextcard" name="bbis" value="imagetextcard" type="radio"><label for="itemImagetextcard">Image Text Card</label> <a href="imagetextcard">Preview</a></div>
+      	<div><input id="itemImage" name="bbis" value="image" type="radio"><label for="itemImage">Image</label> <a href="image">Preview</a></div>
+        <div><input id="itemRowcard" name="bbis" value="rowcard" type="radio"><label for="itemRowcard">Row Card</label> <a href="rowcard">Preview</a></div>
+        <div><input id="itemPagetitle" name="bbis" value="pagetitle" type="radio"><label for="itemPagetitle">Page Title</label> <a href="pagetitle">Preview</a></div>
+        <div><input id="itemRelatedstory" name="bbis" value="relatedstory" type="radio"><label for="itemRelatedstory">Related Story</label> <a href="relatedstory">Preview</a></div>
+      	<div><input id="itemVideo" name="bbis" value="video" type="radio"><label for="itemVideo">Video embed</label> <a href="video">Preview</a></div>
+    </fieldset>
+  
+  	<fieldset class="flex one-third">
+      	<legend>Footer</legend>
+        <div><input id="itemSubfooter" name="bbis" value="subfooter" type="radio"><label for="itemSubfooter">Sub-Footer Call-Out w/BG</label> <a href="subfooter">Preview</a></div>
+    </fieldset>
+  
+  	<fieldset class="flex one-third">
+      	<legend>Callout Card</legend>
+        <div><input id="itemNextfrontiers" name="bbis" value="nextfrontiers" type="radio"><label for="itemNextfrontiers">Explore Our Next Frontiers</label> <a href="nextfrontiers">Preview</a></div>
+        <div><input id="itemNextnow" name="bbis" value="nextnow" type="radio"><label for="itemNextnow">NEXT, NOW</label> <a href="nextnow">Preview</a></div>
+        <div><input id="itemEmpowernext" name="bbis" value="empowernext" type="radio"><label for="itemEmpowernext">Who will you empower NEXT?</label> <a href="empowernext">Preview</a></div>
+    </fieldset>
+  
+  
+  	<!--<label style="display: none;">Field type:<br />
+		<select id="NewItemFieldType">
+			<option disabled selected>-- Select an Option --</option>
+			<optgroup label="Text Field">
+				<option value="blockquote">Blockquote</option>
+				<option value="formattedtext">Formatted Text</option>
+				<option value="text">Text</option>
+				<option value="byline">Byline</option>
+			</optgroup>
+			<optgroup label="Headings">
+				<option value="heading2">Heading 2</option>
+				<option value="heading3">Heading 3</option>
+				<option value="subheading">Sub-Heading</option>
+				<option value="sectionheading">Section Heading</option>
+			</optgroup>
+			<optgroup label="Components">
+              	<option value="fiftyfifty">50/50 Image/Text Grid</option>
+				<option value="accordion">Accordion</option>
+				<option value="buttonlink">Button Link</option>
+				<option value="calloutbox">Call-Out Box</option>
+				<option value="card">Grid Card</option>
+				<option value="hr">Horizontal Rule</option>
+				<option value="icontextcard">Icon Text Card</option>
+              	<option value="imagetextcard">Image Text Card</option>
+				<option value="image">Image</option>
+				<option value="rowcard">Row Card</option>
+				<option value="pagetitle">Page Title</option>
+				<option value="relatedstory">Related Story</option>
+				<option value="video">Video embed</option>
+			</optgroup>
+			<optgroup label="Footer options">
+				<option value="subfooter">Sub-Footer Call-Out w/BG</option>
+			</optgroup>
+			<optgroup label="Callout Card">
+				<option value="nextfrontiers">Explore Our Next Frontiers</option>
+				<option value="nextnow">NEXT, NOW</option>
+				<option value="empowernext">Who will you empower NEXT?</option>
+			</optgroup>
+		</select>
+	</label>-->
+</div>
+
+<!--<script src="https://foundation.uc.edu/Client/Scripts/tiny_mce_V4_9_6/tinymce.min.js"></script>-->
+
+<script src="/file/js/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    //variables etc.
+    var count = 0;
+    var $item = {};
+    var ready = false;
+
+    //FIELD SETTINGS
+    var Fields = {};
+
+  	Fields["imagetextcard"] = {
+      	"ImageTextCard": true,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+  	Fields["fiftyfifty"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": true,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": true,
+        "ImageField": true,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["sectionheading"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": true,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["icontextcard"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": true,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["video"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": true,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["buttonlink"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": true,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": true
+    }
+    Fields["blockquote"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": true,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["formattedtext"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": true,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["calloutbox"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": true,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["text"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": true,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["byline"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": true,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": true
+    }
+
+    Fields["heading2"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": true,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["heading3"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": true,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["subheading"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": true,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+
+    Fields["accordion"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": true,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": true,
+        "SelectLink": false
+    }
+    Fields["relatedstory"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": true,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": false,
+        "SelectLink": true
+    }
+    Fields["card"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": true,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": false,
+        "SelectLink": true
+    }
+    Fields["rowcard"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": true,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": false,
+        "SelectLink": true
+    }
+    Fields["hr"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": true,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["image"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": true,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": true,
+        "FullPageWidth": true,
+        "ImageField": true,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["pagetitle"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": true,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+
+    Fields["subfooter"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": true,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": true,
+        "FormattedText": true,
+        "SelectLink": true
+    }
+    Fields["footer"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": true,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+
+    Fields["nextfrontiers"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": true,
+        "NextNow": false,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["nextnow"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": true,
+        "EmpowerNext": false,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+    Fields["empowernext"] = {
+      	"ImageTextCard": false,
+      	"FiftyFiftyGrid": false,
+        "SectionHeading": false,
+        "IconTextCard": false,
+        "Video": false,
+        "ButtonLink": false,
+        "AdvancedDonationForm": false,
+        "Byline": false,
+        "Question": false,
+        "Blockquote": false,
+        "RelatedStory": false,
+        "Card": false,
+        "RowCard": false,
+        "HR": false,
+        "NextFrontiers": false,
+        "NextNow": false,
+        "EmpowerNext": true,
+        "Image": false,
+        "PageTitle": false,
+        "SubFooter": false,
+        "Footer": false,
+        "Accordion": false,
+        "CalloutBox": false,
+        "Formattedtext": false,
+        "QuoteSource": false,
+        "Help": false,
+        "QuestionRequired": false,
+        "MaxLength": false,
+        "LinkAttribute": false,
+        "DisplayCondition": false,
+        "TextFieldType": "text",
+        "EventCateogry": false,
+        "ConditionFieldType": "text",
+        "ColumnWidth": false,
+        "FullPageWidth": false,
+        "ImageField": false,
+        "FormattedText": false,
+        "SelectLink": false
+    }
+      
+    var ConditionFieldType = {};
+    ConditionFieldType["text"] = {
+        "ddDisplayConditionValText": true,
+        "ddDisplayConditionIsCheckbox": false,
+        "ddDisplayConditionCodeTable": false,
+        "ddDisplayConditionEventCategory": false
+    }
+    ConditionFieldType["checkbox"] = {
+        "ddDisplayConditionValText": false,
+        "ddDisplayConditionIsCheckbox": true,
+        "ddDisplayConditionCodeTable": false,
+        "ddDisplayConditionEventCategory": false
+    }
+
+    $item.Row = {};
+    $item.Container = {};
+    $item.Table = {};
+    $item.Row = $('#ItemRowTemplate').clone();
+    $item.Container = $('.ItemContainer');
+    $item.Table = $('.ItemTable');
+
+    $('#ItemRowTemplate').remove();
+
+    //loop through saved settings, and set text fields, select lists, textareas, and checkboxes (NB: not currently updating radio buttons as none have been required yet)
+    $(document).ready(function() {
+
+        //$('#ddCountries').val(BLACKBAUD.api.customPartEditor.settings["ddCountries"]);
+        //$('#ddCountries').multiSelect()
+
+        //load Event Categories
+
+        $.get("/WebAPI/CodeTable/b328e14b-9269-4b6c-bf93-7b10c70f71c3", function(data) {
+            $('#ddEventCategories').empty();
+            $.each(data, function() {
+                $('#ddEventCategories').append('<option value="' + this.Id + '">' + this.Description + '</option>');
+            });
+            $.each(BLACKBAUD.api.customPartEditor.settings["ddEventCategories"], function(key, value) {
+                $('#ddEventCategories').find('option[value="' + key + '"]').prop('selected', true);
+            });
+
+            $('#ddEventCategories').multiSelect();
+            ready = true;
+        });
+
+        $.each(BLACKBAUD.api.customPartEditor.settings, function(key, value) {
+            if (key.substr(0, 3) === "chk" && value === "on") {
+                $('#' + key).prop('checked', true).parents('table').first().addClass('CheckboxOptionSelected');
+            } else {
+                $('#' + key).val(value);
+            }
+        });
+
+        var CheckReady = setInterval(function() {
+            if (ready) {
+                $.each(BLACKBAUD.api.customPartEditor.settings["items"], function(i) {
+                    addRow(BLACKBAUD.api.customPartEditor.settings["items"][i]);
+                });
+                $('.Col3 label input[type="checkbox"]:checked').closest('div').addClass('open');
+                ready = false;
+                clearInterval(CheckReady);
+            }
+        }, 0); // 100
+
+        // BuildConditionalSelects();
+        // $('select[id^=ddDisplayConditionCompare]').each(BuildConditionCompare);
+        BuildMatrix();
+
+    });
+
+    Sys.Application.add_load(function() {
+        $('form').validate({
+            ignore: ":not(:visible)"
+        });
+    });
+
+    //run this when it saves (hint: return false to cancel the save)
+    BLACKBAUD.api.customPartEditor.onSave = function() {
+        tinyMCE.triggerSave();
+
+        if ($('form').valid()) {
+            var items = [];
+
+            $('#BBTabs input[type="checkbox"], #BBTabs input[type="radio"]').each(function() {
+                var checked = $(this).is(':checked');
+                if (!checked) {
+                    $(this).val("off");
+                } else {
+                    $(this).val("on");
+                }
+            });
+
+            $item.Table.find('.ItemRow').each(function(i) {
+                //var tinyVal = tinyMCE.get('AccordionContent_' + i).getContent();
+
+                var rowdata = {
+                    type: $(this).attr('data-type'),
+                    question: $(this).find('.Question input').val(),
+
+                    sectionHeading: $(this).find('.SectionHeading input').val(),
+
+                    video: $(this).find('.Video input.videoUrl').val(),
+                    videoLinkText: $(this).find('.Video input.linkText').val(),
+
+                    quoteSource: $(this).find('.Blockquote input.quoteSource').val(),
+
+                    buttonLinkText: $(this).find('.ButtonLink input.linkText').val(),
+
+                    relatedStoryTitle: $(this).find('.RelatedStory input.relatedStoryTitle').val(),
+                    relatedStoryLinkText: $(this).find('.RelatedStory input.relatedStoryLinkText').val(),
+                  
+                  	imageTextCardTitle: $(this).find('.ImageTextCard input.cardTitle').val(),
+                    imageTextCardText: $(this).find('.ImageTextCard input.cardText').val(),
+
+                    cardTitle: $(this).find('.Card input.cardTitle').val(),
+                    cardText: $(this).find('.Card input.cardText').val(),
+                    cardLinkText: $(this).find('.Card input.cardLinkText').val(),
+
+                    rowCardTitle: $(this).find('.RowCard input.cardTitle').val(),
+                    rowCardText: $(this).find('.RowCard input.cardText').val(),
+                    rowCardLinkText: $(this).find('.RowCard input.cardLinkText').val(),
+
+                    subFooterHeading: $(this).find('.SubFooter input.subFooterHeading').val(),
+                    subFooterSubHeading: $(this).find('.SubFooter input.subFooterSubHeading').val(),
+                    subfooterLinkText: $(this).find('.SubFooter input.subfooterLinkText').val(),
+
+                    footerImgText: $(this).find('.Footer .Field .SearchFieldText').text(),
+                    footerImgSrc: $(this).find('.Footer .Field.ImagePickerRender img').attr('src'),
+                    footerColOneHeading: $(this).find('.Footer .footerColOneHeading').val(),
+                    footerColTwoHeading: $(this).find('.Footer .footerColTwoHeading').val(),
+                    footerColThreeHeading: $(this).find('.Footer .footerColThreeHeading').val(),
+
+                    imageCaption: $(this).find('.Image input.imageCaption').val(),
+                    imageAlign: $(this).find('.Image select.imageAlign').val(),
+                  
+                  	fiftyGridImageAlign: $(this).find('.FiftyFiftyGrid select.imageAlign').val(),
+
+                    pageTitle: $(this).find('.PageTitle input').val(),
+
+                    accordionText: $(this).find('.Accordion input.accordionText').val(),
+
+                    authorName: $(this).find('.Byline input.authorName').val(),
+                    authorEmail: $(this).find('.Byline input.authorEmail').val(),
+                    datePublished: $(this).find('.Byline input.datePublished').val(),
+                  	ogTitle: $(this).find('.Byline input.ogTitle').val(),
+
+                    imageFieldText: $(this).find('.ImageField .Field .SearchFieldText').text(),
+                    imageFieldSrc: $(this).find('.ImageField .Field.ImagePickerRender img').attr('src'),
+                  
+                  	selectLinkName: $(this).find('.SelectLink .selected-link-name').text(),
+                  	selectLinkUrl: $(this).find('.SelectLink .selected-link-url').text(),
+
+                  	formattedText: $(this).find('.FormattedText .tinymce').val(),
+
+                    help: $(this).find('.Help input').val(),
+                    columns: $(this).find('.ColumnWidth select').val(),
+                    fullPageWidth: $(this).find('.FullPageWidth select').val(),
+                    required: $(this).find('.QuestionRequired input').val(),
+                    maxLength: $(this).find('.MaxLength input').val(),
+
+                    linkAttr: $(this).find('.LinkAttribute input[type="checkbox"]').val(),
+                    linkAttrLabel: $(this).find('.LinkAttribute input[type="text"]').val(),
+                    conditional: $(this).find('.DisplayCondition label input').val(),
+                    conditionalOperator: $(this).find('.DisplayCondition select[id^=ddDisplayConditionIs]').val(),
+                    conditionalCompare: $(this).find('.DisplayCondition select[id^=ddDisplayConditionCompare]').val(),
+                    conditionalFields: {
+                        textfield: $(this).find('.DisplayCondition input[id^=ddDisplayConditionValText]').val(),
+                        checkbox: $(this).find('.DisplayCondition input[id^=ddDisplayConditionIsCheckbox]').val()
+                    },
+                    index: $(this).find('input[id^=ItemIndex]').val()
+
+                };
+                items.push(rowdata);
+
+            });
+
+            // var EventCategories = {};
+            //$('#ddEventCategories option:selected').each(function() {
+            //     EventCategories[$(this).val()] = $(this).text();
+            //});
+
+            BLACKBAUD.api.customPartEditor.settings["items"] = items;
+            // BLACKBAUD.api.customPartEditor.settings["ddEventCategories"] = EventCategories; //$('#ddEventCategories').val();
+            BLACKBAUD.api.customPartEditor.settings["ddCountries"] = $('#ddCountries').val();
+            BLACKBAUD.api.customPartEditor.settings["txtShow"] = $('#txtShow').val();
+            BLACKBAUD.api.customPartEditor.settings["txtLimit"] = $('#txtLimit').val();
+            BLACKBAUD.api.customPartEditor.settings["txtAPI"] = $('#txtAPI').val();
+            BLACKBAUD.api.customPartEditor.settings["txtButtonNext"] = $('#txtButtonNext').val();
+            BLACKBAUD.api.customPartEditor.settings["txtButtonPrev"] = $('#txtButtonPrev').val();
+
+            return true;
+
+        } else {
+            return false;
+        }
+
+    };
+
+    //trigger on checkbox change to set the value properly... there's a bug in chrome that sets the checkbox value to 'on' even when it's been unchecked.
+    $(document).on('change', '#BBTabs input[type="checkbox"], #BBTabs input[type="radio"]', function() {
+        var checked = $(this).is(':checked');
+        if (!checked) {
+            $(this).val("off");
+        } else {
+            $(this).val("on");
+        }
+    });
+
+    // Return a helper with preserved width of cells
+    var fixHelper = function(e, ui) {
+        ui.children().each(function(i) {
+            $(this).width($(this).width());
+        });
+        return ui;
+    };
+
+    $item.Table.sortable({
+        handle: '.ItemActionMove',
+        placeholder: 'ui-state-highlight',
+        cursor: 'move',
+        helper: fixHelper,
+        update: function(event, ui) {
+            $item.Table.find('.ItemRow').each(function(i) {
+                $(this).find(".Counter span").text(i + 1);
+            });
+
+            // BuildConditionalSelects();
+            BuildMatrix();
+        }
+    });
+
+    //functions
+    function addRow(item) {
+
+        var $newRow = $item.Row.clone();
+        var count = GetID();
+      
+      // console.log(item);
+
+        if (item !== undefined) {
+            count = item.index;
+        }
+
+        $newRow.find('div, select, input, a, button, textarea, button').each(function() {
+            var ID = $(this).attr('id');
+            var name = $(this).attr('name');
+
+            if (ID !== undefined) {
+                var newID = ID.replace("_0", "_" + count);
+                $(this).attr('id', newID);
+            }
+            if (name !== undefined) {
+                var newName = name.replace("_0", "_" + count);
+                if ($(this).attr('type') != "radio") {
+                    $(this).attr('name', newName);
+                } else {
+                    $(this).attr('name', 'item_' + name);
+                }
+            }
+        });
+
+        // $newRow.find('select[id^=ddDisplayConditionEventCategory]').append($('#ddEventCategories option:selected').clone());
+
+        if (item !== undefined) {
+          // console.log(item);
+
+            $newRow.find('.Question input').val(item.question);
+
+            $newRow.find('.SectionHeading input').val(item.sectionHeading);
+
+            $newRow.find('.Video input.videoUrl').val(item.video);
+            $newRow.find('.Video input.linkText').val(item.videoLinkText);
+
+            $newRow.find('.Blockquote input.quoteSource').val(item.quoteSource);
+
+            $newRow.find('.ButtonLink .linkText').val(item.buttonLinkText);
+
+            $newRow.find('.RelatedStory input.relatedStoryTitle').val(item.relatedStoryTitle);
+            $newRow.find('.RelatedStory .relatedStoryLinkText').val(item.relatedStoryLinkText);
+          
+          	$newRow.find('.ImageTextCard input.cardTitle').val(item.imageTextCardTitle);
+            $newRow.find('.ImageTextCard input.cardText').val(item.imageTextCardText);
+
+            $newRow.find('.Card input.cardTitle').val(item.cardTitle);
+            $newRow.find('.Card input.cardText').val(item.cardText);
+            $newRow.find('.Card .cardLinkText').val(item.cardLinkText);
+
+          	$newRow.find('.IconTextCard .SearchField.ImagePicker').attr('id', 'ImagePicker_' + item.index);
+
+            $newRow.find('.RowCard input.cardTitle').val(item.rowCardTitle);
+            $newRow.find('.RowCard input.cardText').val(item.rowCardText);
+            $newRow.find('.RowCard .cardLinkText').val(item.rowCardLinkText);
+
+            $newRow.find('.SubFooter input.subFooterHeading').val(item.subFooterHeading);
+            $newRow.find('.SubFooter input.subFooterSubHeading').val(item.subFooterSubHeading);
+            $newRow.find('.SubFooter .subfooterLinkText').val(item.subfooterLinkText);
+
+            $newRow.find('.Footer .Field .SearchFieldText').text(item.footerImgText);
+            $newRow.find('.Footer .SearchField.ImagePicker').attr('id', 'ImagePicker_' + item.index);
+            $newRow.find('.Footer .Field.ImagePickerRender img').attr('src', item.footerImgSrc);
+            $newRow.find('.Footer input.footerColOneHeading').val(item.footerColOneHeading);
+
+            $newRow.find('.Image input.imageCaption').val(item.imageCaption);
+            $newRow.find('.Image select.imageAlign').val(item.imageAlign);
+          
+          	$newRow.find('.FiftyFiftyGrid select.imageAlign').val(item.fiftyGridImageAlign);          
+
+            $newRow.find('.PageTitle input').val(item.pageTitle);
+
+            $newRow.find('.Accordion input.accordionText').val(item.accordionText);
+
+            $newRow.find('.Byline input.authorName').val(item.authorName);
+            $newRow.find('.Byline input.authorEmail').val(item.authorEmail);
+            $newRow.find('.Byline input.datePublished').val(item.datePublished);
+          	$newRow.find('.Byline input.ogTitle').val(item.ogTitle);
+
+            var tinymceId = $newRow.find('.tinymce').attr('id');
+            tinymce.EditorManager.execCommand('mceAddEditor', true, '#' + tinymceId);
+
+            $newRow.find('.ImageField .SearchField.ImagePicker').attr('id', 'ImagePicker_' + item.index);
+          	$newRow.find('.ImageField .Field .SearchFieldText').text(item.imageFieldText);
+            $newRow.find('.ImageField .Field.ImagePickerRender img').attr('src', item.imageFieldSrc);
+          
+          	/*
+			if (item.type == "buttonlink") {
+              	$newRow.find('.SelectLink .selected-link-name').text(item.buttonLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.buttonLinkUrl);
+            } else if (item.type == "relatedstory") {
+                $newRow.find('.SelectLink .selected-link-name').text(item.relatedStoryLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.relatedStoryLinkUrl);
+            } else if (item.type == "card") {
+                $newRow.find('.SelectLink .selected-link-name').text(item.cardLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.cardLinkUrl);
+            } else if (item.type == "rowcard") {
+                $newRow.find('.SelectLink .selected-link-name').text(item.rowCardLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.rowCardLinkUrl);
+            } else if (item.type == "subfooter") {
+                $newRow.find('.SelectLink .selected-link-name').text(item.subFooterLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.subFooterLinkUrl);
+            } else if (item.type == "byline") {
+                $newRow.find('.SelectLink .selected-link-name').text(item.storyLinkName);
+                $newRow.find('.SelectLink .selected-link-url').text(item.storyLinkUrl);
+            } else {
+
+            }
+			*/
+              
+          //console.log(item.selectLinkUrl + " " + selectLinkName);
+          
+          	$newRow.find('.SelectLink .selected-link-name').text(item.selectLinkName);
+          	$newRow.find('.SelectLink .selected-link-url').text(item.selectLinkUrl);
+          
+			$newRow.find('.FormattedText .tinymce').val(item.formattedText);
+
+            $newRow.find('.QuestionRequired input').prop('checked', item.required == "on");
+            $newRow.find('.Help input').val(item.help);
+            $newRow.find('.ColumnWidth select').val(item.columns);
+            $newRow.find('.FullPageWidth select').val(item.fullPageWidth);
+            $newRow.find('.LinkAttribute input[type="checkbox"]').prop('checked', item.linkAttr == "on");
+            $newRow.find('.LinkAttribute input[type="text"]').val(item.linkAttrLabel);
+            $newRow.find('.MaxLength input').val(item.maxLength);
+            $newRow.find('.CodeTable input').val(item.codeTableID);
+            $newRow.find('.CodeTableMulti input').prop('checked', item.codeTableMulti == "on");
+            $newRow.find('.DisplayCondition label input[type="checkbox"]').prop('checked', item.conditional == "on");
+            $newRow.find('.DisplayCondition select[id^=ddDisplayConditionIs]').val(item.conditionalOperator);
+            $newRow.find('.DisplayCondition select[id^=ddDisplayConditionCompare]').attr('data-value', item.conditionalCompare);
+            $newRow.find('.DisplayCondition input[id^=ddDisplayConditionValText]').val(item.conditionalFields.textfield);
+            $newRow.find('.DisplayCondition input[id^=ddDisplayConditionIsCheckbox]').prop('checked', item.conditional == "on");
+            /*
+          	$newRow.find('.DisplayCondition select[id^=ddDisplayConditionCodeTable]').attr('data-value', item.conditionalFields.codetable);
+            $newRow.find('.DisplayCondition input[id^=ddDisplayConditionEventCategory]').val(item.conditionalFields.eventcategory);
+            if (item.AddressMap) {
+                $newRow.find('.AddressMap_Address select').attr('data-value', item.AddressMap.Address);
+                $newRow.find('.AddressMap_Suburb select').attr('data-value', item.AddressMap.Suburb);
+                $newRow.find('.AddressMap_State select').attr('data-value', item.AddressMap.State);
+                $newRow.find('.AddressMap_Postcode select').attr('data-value', item.AddressMap.Postcode);
+            }
+            $newRow.find('.Country input').val(item.countryID);
+		  */
+            $newRow.attr('data-type', item.type);
+            $newRow.find('.FieldType').text(item.type);
+            $newRow.find('input[id^=ItemIndex]').val(item.index);
+        } else {
+            $newRow.find('input[id^=ItemIndex]').val(count);
+          // $newRow.attr('data-type', $('#NewItemFieldType').val());
+          // $newRow.find('.FieldType').text($('#NewItemFieldType').val());
+          
+          	$newRow.attr('data-type', $("input[name='bbis']:checked").val());
+          	$newRow.find('.FieldType').text($("input[name='bbis']:checked").val());
+        }
+
+        $newRow.find('.LinkAttributeExpand, .DisplayconditionExpand').slideUp(0);
+      	/* if ($newRow.find('.LinkAttribute input[type="checkbox"]').is(':checked')) {
+            $newRow.find('.LinkAttributeExpand').slideDown(150);
+        } */
+        if ($newRow.find('.DisplayCondition input[type="checkbox"]').is(':checked')) {
+            $newRow.find('.DisplayconditionExpand').slideDown(150);
+        }
+
+        $.each(Fields[$newRow.attr('data-type')], function(key, value) {
+            if (!value) {
+                $newRow.find("." + key).remove();
+            }
+        });
+
+        $item.Table.append($newRow);
+
+        $item.Table.find('.ItemRow').each(function(i) {
+            $(this).find(".Counter span").text(i + 1);
+        });
+
+        function applyMCE() {
+          	tinyMCE.init({
+                mode: "textareas",
+                editor_selector: "tinymce",
+              	theme: 'modern',
+              	elements:'pagecntnt_tmpltcntnt_tabContentTabs__ctl0_ctl00_tabExplorerTabs__ctl0_HTMLEditorControlWrapper1_htmlEditor_tinyMce_TinyTarget',
+              	height: "150px",
+              
+              	menu: {
+                    insert: {
+                        title: "Insert",
+                        items: " inserttable bbimage | bblink unlink anchor | charmap advhr | bbmergefields "
+                    },
+                    view: {
+                        title: "View",
+                        items: " fullscreen preview | code  bbstylesheetoptions "
+                    },
+                    table: {
+                        title: "Table",
+                        items: " tableprops deletetable | cell row column "
+                    }
+                },
+				
+              //plugins: 'code print preview searchreplace autolink directionality visualchars fullscreen image link media codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+              	bb_admin_images: true,
+              	bb_admin_links: true,
+              	image_advtab: true,
+              	plugins: 'compat3x lists advlist textcolor colorpicker searchreplace spellchecker table anchor hr image charmap link fullscreen preview code fullpage powerpaste', 
+              
+                file_picker_types: "file image media",
+                file_picker_callback: function(callback, value, meta) {
+                    // Provide image and alt text for the image dialog
+                    if (meta.filetype == "image") {
+                        BLACKBAUD.api.customPartEditor.images.launchImagePicker({
+                            callback: function(selectedImage) {
+                                callback(selectedImage.url, {
+                                    alt: selectedImage.alt
+                                });
+                            }
+                        });
+                    }
+
+                    if (meta.filetype == "file") {
+                        BLACKBAUD.api.customPartEditor.links.launchLinkPicker({
+                            callback: function(selectedLink) {
+                                callback(selectedLink.url, {
+                                    text: selectedLink.name
+                                });
+                            }
+                        });
+                    }
+                },
+              
+              // toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | image | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+              	toolbar1: " undo redo | cut copy paste | formatselect removeformat bullist numlist outdent indent ",
+              	toolbar2: " bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright alignjustify superscript subscript spellchecker | searchreplace fullpage | image | image_edit",
+              //image_advtab: true,
+              	style_formats: [{
+                    title: "Paragraph",
+                    block: "p"
+                }, {
+                    title: "Heading 2",
+                    block: "h2"
+                }, {
+                    title: "Heading 3",
+                    block: "h3"
+                }, {
+                    title: "Sub-Heading",
+                    block: "p",
+                    classes: "large"
+                }],
+                content_css: [
+                    "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+                    //"/file/css/bootstrap.css",
+                    "/file/css/template.css"
+                ]
+            });
+          
+          /*
+            tinyMCE.init({
+                mode: "textareas",
+                editor_selector: "tinymce",
+
+                theme: 'modern',
+              	height: "150px",
+                plugins: 'compat3x lists advlist textcolor colorpicker searchreplace spellchecker table anchor hr image charmap link fullscreen preview code fullpage powerpaste, image_tools,advimage,bbimages,bblinks,advhr',
+                external_plugins: {
+                    image_tools: "https://foundation.uc.edu//Client/Scripts/tiny_mce_V4_9_6/plugins/image_tools/editor_plugin.js",
+                    advimage: "https://foundation.uc.edu//Client/Scripts/tiny_mce_V4_9_6/plugins/advimage/editor_plugin.js",
+                    bbimages: "https://foundation.uc.edu//Client/Scripts/tiny_mce_V4_9_6/plugins/bbimages/editor_plugin.js",
+                    bblinks: "https://foundation.uc.edu//Client/Scripts/tiny_mce_V4_9_6/plugins/bblinks/editor_plugin.js",
+                    advhr: "https://foundation.uc.edu//Client/Scripts/tiny_mce_V4_9_6/plugins/advhr/editor_plugin.js"
+                },
+
+                toolbar1: " undo redo | cut copy paste | formatselect removeformat bullist numlist outdent indent ",
+                toolbar2: " bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright alignjustify superscript subscript spellchecker | searchreplace fullpage | image_edit",
+                menu: {
+                    insert: {
+                        title: "Insert",
+                        items: " inserttable bbimage | bblink unlink anchor | charmap advhr | bbmergefields "
+                    },
+                    view: {
+                        title: "View",
+                        items: " fullscreen preview | code  bbstylesheetoptions "
+                    },
+                    table: {
+                        title: "Table",
+                        items: " tableprops deletetable | cell row column "
+                    }
+                },
+                toolbar_items_size: "small",
+                file_picker_types: "file image media",
+                file_picker_callback: function(callback, value, meta) {
+                    // Provide image and alt text for the image dialog
+                    if (meta.filetype == "image") {
+                        BLACKBAUD.api.customPartEditor.images.launchImagePicker({
+                            callback: function(selectedImage) {
+                                callback(selectedImage.url, {
+                                    alt: selectedImage.alt
+                                });
+                            }
+                        });
+                    }
+
+                    if (meta.filetype == "file") {
+                        BLACKBAUD.api.customPartEditor.links.launchLinkPicker({
+                            callback: function(selectedLink) {
+                                callback(selectedLink.url, {
+                                    text: selectedLink.name
+                                });
+                            }
+                        });
+                    }
+                },
+                bb_admin_images: true,
+                setup: function(ed) {
+                    ed.on("init", function(e) {
+                        var bod = ed.getBody();
+                        bod.style.backgroundColor = ed.settings.backColor;
+                        bod.style.color = ed.settings.foreColor;
+                    });
+                    ed.on("GetContent", function(o) {
+                        o.content = o.content.replace(
+                            /(<style[^>]+|>[\s\S]*?<\/style>)/g,
+                            function(v, text) {
+                                if (text) {
+                                    text = text.replace(/\r*\r\n/g, "\r\n");
+                                }
+                                return text;
+                            }
+                        );
+                    });
+                },
+                bb_admin_links: true,
+
+                style_formats: [{
+                    title: "Paragraph",
+                    block: "p"
+                }, {
+                    title: "Heading 2",
+                    block: "h2"
+                }, {
+                    title: "Heading 3",
+                    block: "h3"
+                }, {
+                    title: "Sub-Heading",
+                    block: "p",
+                    classes: "large"
+                }],
+                spellchecker_languages: "English=en",
+                image_advtab: true,
+                content_css: [
+                    "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+                    //"/file/css/bootstrap.css",
+                    "/file/css/template.css"
+                ]
+            }); 
+			*/
+        }
+
+        applyMCE();
+
+        $(function() {
+            $(".datePublished").datepicker({
+                dateFormat: "MM d, yy"
+            });
+        });
+
+        // BuildConditionalSelects();
+        BuildMatrix();
+      	// $newRow.find('.DisplayCondition select[id^=ddDisplayConditionCompare]').change();
+        // $newRow.find('.CodeTableMulti input').change();
+        $newItem.dialog("close");
+    }
+
+    /* function BuildConditionalSelects() {
+        $('.ItemRow').find('.DisplayCondition select[id^=ddDisplayConditionCompare]').empty().append($('<option>&lt;Select a question&gt;</option>'));
+
+        $('.ItemRow').not('[data-type="page break"]').each(function(i) {
+
+            if ($(this).attr('data-type') == "code table" && $(this).find('.CodeTableMulti input').is(':checked')) {
+                return;
+            }
+
+            var ID = $(this).find('input[id^=ItemIndex]').val();
+            var Question = $(this).find('.Question input').val();
+            var counter = $(this).find('.Counter').text().trim();
+
+            $('.ItemRow').find('.DisplayCondition select[id^=ddDisplayConditionCompare]').each(function() {
+                $(this).append($('<option></option>').text(counter + ". " + Question).val(ID));
+                $(this).filter('[data-value]').val($(this).attr('data-value'));
+            });
+        });
+    } */
+
+    $(document).on('change', '.DisplayCondition select[id^=ddDisplayConditionCompare], .DisplayCondition select[id^=ddDisplayConditionCodeTable]', function() {
+        $(this).attr('data-value', $(this).val());
+    });
+
+    //action links
+
+    // BBIS URL link
+    $(document).on('click', '.btn-select', function(e) {
+        e.preventDefault();
+
+        // Verify the user has permission to launch the link picker
+        if (!BLACKBAUD.api.customPartEditor.links.canLaunchLinkPicker) {
+            alert('You do not have permission to launch the link picker.');
+        } else {
+            // Launch the link picker, passing in our callback
+            var thisIdVal = $(this).parents('.Field').parent().attr('id'),
+                thisSplitId = thisIdVal.split("_")[1];
+          // console.log(thisIdVal);
+
+            BLACKBAUD.api.customPartEditor.links.launchLinkPicker({
+                callback: function(selectedLink) {
+                    $('#' + thisIdVal + ' .selected-link-name').text(selectedLink.name);
+                    $('#' + thisIdVal + ' .selected-link-url').text(selectedLink.url);
+                }
+            });
+        }
+    });
+
+
+    $(document).on('click', 'a.ImagePicker', function(e) {
+        e.preventDefault();
+
+        if (!BLACKBAUD.api.customPartEditor.images.canLaunchImagePicker) {
+            // do nothing
+        } else {
+            var thisIdVal = $(this).parents('.Field').parent().attr('id'),
+                thisSplitId = thisIdVal.split("_")[1];
+          // console.log(thisIdVal);
+
+            BLACKBAUD.api.customPartEditor.images.launchImagePicker({
+                callback: function(selectedImage) {
+                  // console.log(selectedImage.url);
+                    $('#' + thisIdVal + ' .ImagePickerRender img').attr('src', selectedImage.url);
+                    $('#' + thisIdVal + ' .ImagePicker .SearchFieldText').text(selectedImage.name);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.ItemActionAdd', function(e) {
+        e.preventDefault();
+      // $("#NewItemFieldType").prop("selectedIndex", 0);
+      	$("#newItem input[type='radio']").prop("checked", false);
+      
+        $newItem.dialog("open");
+    });
+
+    $(document).on('click', '.ItemActionDelete', function(e) {
+        e.preventDefault();
+        if (confirm("This will remove this question.  Are you sure?")) {
+            $(this).parents('.ItemRow').remove();
+            $('.ItemRow').each(function(i) {
+                $(this).find(".Counter span").text(i + 1);
+            });
+        }
+
+        // BuildConditionalSelects();
+        BuildMatrix();
+    });
+
+    //make a string safe for a css class (for filtering categories)
+    function makeSafeForCSS(name) {
+        return name.replace(/[^a-z0-9]/g, function(s) {
+            var c = s.charCodeAt(0);
+            if (c == 32) return '-';
+            if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
+            return '__' + ('000' + c.toString(16)).slice(-4);
+        });
+    }
+
+    $('#BBTabs').tabs();
+
+    function GetID() {
+        var maximum = 0;
+        $('.ItemRow').each(function() {
+            var value = parseFloat($(this).find('input[id^=ItemIndex]').val());
+            maximum = (value > maximum) ? value : maximum;
+        });
+        return maximum + 1;
+    }
+
+
+    $newItem = $("#newItem").dialog({
+        autoOpen: false,
+      	height: $(document).height() - 50, // 200,
+      	width: $(document).width(), // 320,
+        modal: true,
+        buttons: {
+            "Add": function() {
+              //if ($("#NewItemFieldType").val()) {
+              	if ($("input[name='bbis']:checked").val()) {
+              		addRow();                  
+              	}
+            },
+            Cancel: function() {
+                $newItem.dialog("close");
+            }
+        }
+    });
+
+  	//$(document).on('click', '.LinkAttribute label input[type="checkbox"], .DisplayCondition label input[type="checkbox"]', function() {
+  	//    $(this).parent().next().slideToggle(150);
+  	//});
+  
+    // $(document).on('change', '.Question input', BuildConditionalSelects);
+    $(document).on('change', '.Question input', BuildMatrix);
+
+    /*
+	$(document).on('change', 'select[id^=ddDisplayConditionCompare]', BuildConditionCompare);
+
+    function BuildConditionCompare() {
+        var $FieldCompare = $(this).parent().find('.FieldCompare');
+        var target = $(this).val();
+        if ($(this).val() !== null && $(this).val() !== "<Select a question>") {
+            $.each(ConditionFieldType[Fields[$("#ItemIndex_" + $(this).val()).parent().attr('data-type')].ConditionFieldType], function(key, value) {
+                var $Field = $FieldCompare.find('[id^="' + key + '"]');
+                if (value) {
+                    $Field.show();
+                    //load Event Categories
+                    if (key == "ddDisplayConditionCodeTable") {
+
+                        $.get("/WebAPI/CodeTable/" + $('#CodeTable_' + target).val(), function(data) {
+                            $Field.empty();
+                            $.each(data, function() {
+                                $Field.append('<option value="' + this.Id + '">' + this.Description + '</option>');
+                            });
+                            $Field.val($Field.attr('data-value'));
+                        });
+                    }
+
+                } else {
+                    $FieldCompare.find('[id^="' + key + '"]').hide().val("").prop('checked', false);
+                }
+            });
+        } else {
+            $FieldCompare.children().hide().val("").prop("checked", false);
+        }
+    }
+	*/
+
+    $(document).on('click', '.Col3 label input[type="checkbox"]', function() {
+        if ($(this).is(':checked')) {
+            $(this).closest('div').addClass('open');
+        } else {
+            $(this).closest('div').removeClass('open');
+        }
+    });
+    /* $(document).on('change', '.CodeTableMulti input', function() {
+        if ($(this).is(':checked')) {
+            $(this).parents('.ItemRow').find('.LinkAttribute input, .QuestionRequired input').prop('checked', false).trigger('change').parents('.LinkAttribute, .QuestionRequired').removeClass('open').hide();
+        } else {
+            $(this).parents('.ItemRow').find('.LinkAttribute input, .QuestionRequired input').parents('.LinkAttribute, .QuestionRequired').show();
+        }
+    }); */
+    $(document).on('click', '.header-cell a.all', function() {
+        var ix = $(this).parent().index();
+        $('.flexgrid section .body-row').each(function() {
+            $(this).children().eq(ix).find('input').prop('checked', true);
+        });
+    });
+    $(document).on('click', '.header-cell a.none', function() {
+        var ix = $(this).parent().index();
+        $('.flexgrid section .body-row').each(function() {
+            $(this).children().eq(ix).find('input').prop('checked', false);
+        });
+    });
+    $(document).on('change', '.flexgrid input[type="checkbox"]', function() {
+        BLACKBAUD.api.customPartEditor.settings["Matrix"] = GetMatrixResults();
+    });
+
+    function GetMatrixResults() {
+        var MatrixResults = {};
+        $('.flexgrid .header-cell[data-value]').each(function() {
+            var eventID = $(this).attr('data-value');
+            MatrixResults[eventID] = {};
+            $('.flexgrid .body-row').each(function() {
+                var V = $(this).find('input[data-id="' + eventID + '"]').is(':checked');
+                var Q = $(this).attr('data-index');
+                MatrixResults[eventID][Q] = V;
+            });
+        });
+        return MatrixResults;
+    }
+
+
+    function BuildMatrix() {
+        var $SelectedEvents = $('#ddEventCategories option:selected');
+        var $Questions = $('.ItemRow').not('[data-type="page break"]');
+        var $header = $('.flexgrid header');
+        var $body = $('.flexgrid section');
+        BLACKBAUD.api.customPartEditor.settings.Matrix = BLACKBAUD.api.customPartEditor.settings.Matrix || {};
+
+        $body.empty();
+        $header.empty().append('<div class="spacer"></div>');
+
+        $SelectedEvents.each(function() {
+            $header.append($('<div class="header-cell"></div>').text($(this).text()).attr('data-value', $(this).val()).append("<br /><a class='all' href='#' style='text-decoration: none;'>(all)</a> <a class='none' href='#' style='text-decoration: none;'>(none)</a>"));
+        });
+        $Questions.each(function(i) {
+            var QuestionID = $(this).find('[id^=ItemIndex]').val();
+            var DataType = $(this).attr('data-type');
+            var $row = $('<div class="body-row"></div>').attr('data-index', QuestionID);
+            $row.append($('<div class="body-header-cell"></div>').text((i + 1) + ". " + $(this).find('.Question input').val()).append(' <span>[' + DataType + ']</span>'));
+            $SelectedEvents.each(function() {
+                var EventID = $(this).val();
+                var Disabled = false;
+                var IsChecked = false;
+                if (typeof BLACKBAUD.api.customPartEditor.settings.Matrix[EventID] !== 'undefined') {
+                    if (typeof BLACKBAUD.api.customPartEditor.settings.Matrix[EventID][QuestionID] !== 'undefined') {
+                        IsChecked = BLACKBAUD.api.customPartEditor.settings.Matrix[EventID][QuestionID];
+                    }
+                }
+                if (DataType == "event category") {
+                    IsChecked = true;
+                    Disabled = true;
+                }
+                $row.append($('<div class="body-cell"></div>').append($('<input type="checkbox" />').prop('checked', IsChecked).prop('disabled', Disabled).attr('data-id', EventID)));
+            });
+            $body.append($row)
+        });
+    }
+
+    $(document).on('change', '.AddressMap div[data-map] select', function() {
+        $(this).attr('data-value', $(this).val());
+    });
+  
+  	$(document).on('change', '#newItem input', function() {
+      	$(".modal img").attr("src","https://foundation.uc.edu/image/config/ScreenShot-" + $(this).val() + ".png");
+        console.log($(this).val());
+    });
+  
+  	$(document).on('click', '#newItem a', function(e) {
+      	e.preventDefault();
+      	$(".modal img").attr("src","https://foundation.uc.edu/image/config/ScreenShot-" + $(this).attr("href") + ".png");
+      	$(".modal").css("display", "flex");
+    });
+  
+  	$(document).on('click', '.modal span', function() {
+      	$(".modal").css("display", "none");
+    });
+  
+</script>
