@@ -463,7 +463,7 @@
                             .append($calloutcard.clone().html("<p class='card-header'><strong style='font-size: 1em;'>Who will you empower <em>NEXT</em>?</strong></p><p style='line-height: 1.5 !important;'>Scholarships, fellowships and enrichment programs provide opportunities for students to attend, grow and graduate from UC. You can empower our next leaders through support for scholarships and signature programs in career-based education, co-op or professional development.</p>")));
 
                 } else if (item.type == "byline") {
-                   	//$("head").append('<meta property="og:title" content="' + item.ogTitle + '" /><meta property="og:url" content="' + item.selectLinkUrl + '" /><meta property="og:image" content="' + item.imageFieldSrc + '" />');
+                   
                     var $newRow = $contentwrapper.clone()
                         .append($row.clone()
                             .append($byline.clone()
@@ -471,6 +471,12 @@
                         			.append($bylineName.clone().html("By <strong><a href='mailto:" + item.authorEmail.trim() + "'>" + item.authorName.trim() + "</a></strong>"))
                                 )
                             ).append("<div class='story'><span class='dateline'>" + item.datePublished.trim() + "</span><span class='sharing'><a data-pattern='https://www.facebook.com/sharer/sharer.php?u=URL' href='https://www.facebook.com/sharer/sharer.php?u=" + item.selectLinkUrl.trim() + "'><i class='fa fa-facebook-official' aria-hidden='true'></i><span class='sr-only'>Share on facebook</span></a> <a data-pattern='https://twitter.com/intent/tweet?url=URL' href='https://twitter.com/intent/tweet?url=" + item.selectLinkUrl.trim() + "'><i class='fa fa-twitter' aria-hidden='true'></i><span class='sr-only'>Share on Twitter</span></a> <a href='https://www.linkedin.com/shareArticle?mini=true&url=" + item.selectLinkUrl.trim() + "'><i class='fa fa-linkedin-square' aria-hidden='true'></i><span class='sr-only'>Share on LinkedIn</span></a> <a href='#' class='printPage'><i class='fa fa-print' aria-hidden='true'></i></a></span></div>"));
+                  
+                  	if (item.authorName) {
+                    	// Do nothing
+                    } else {
+                      	$("head").append('<style type="text/css">.byline { display: none !important; }</style>');
+                    }
 
                 } else if (item.type == "hr") {
                     var $newRow = $contentwrapper.clone()
